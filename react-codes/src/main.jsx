@@ -1,11 +1,10 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.jsx'
-import Calculator from './questions/Calculator.jsx'
+import Todo from './questions/ToDo.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Calculator />
+    <Todo />
   </StrictMode>,
 )
