@@ -52,8 +52,9 @@ function Todo() {
     }
 
     return (
-        <div>
-            <div>
+        <div className="mainContent">
+            <h1>ToDo List</h1>
+            <div className="inputBox">
                 {/* Input field jismein onKeyDown event handler add kiya hai */}
                 <input
                     type="text"
@@ -62,19 +63,21 @@ function Todo() {
                     onKeyDown={handleKeyDown} 
                 />
             </div>
-            <div>
+            <div className="SubmitBtnContainer">
                 {/* Submit button ka text edit mode ke hisaab se badal raha hai */}
-                <button onClick={submitHandler}>
+                <button className="submitBtn" onClick={submitHandler}>
                     {editIndex !== null ? "Update Todo" : "Submit Todo"}
                 </button>
             </div>
-            <div>
+            <div className="todoList">
                 {todos.map((todo, index) => (
-                    <div key={index} >
+                    <div className="singleTodo" key={index} >
                         {todo}
                         {/* Delete aur Edit button */}
-                        <button onClick={() => deleteHandler(index)}>X</button>
-                        <button onClick={() => handleEdit(index, todo)}>Edit</button>
+                        <div className="deleteEditBtn">
+                        <button className="deleteBtn" onClick={() => deleteHandler(index)}>X</button>
+                        <button className="editBtn" onClick={() => handleEdit(index, todo)}>Edit</button>
+                        </div>
                     </div>
                 ))}
             </div>
