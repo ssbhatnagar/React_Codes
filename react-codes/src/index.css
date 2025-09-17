@@ -98,16 +98,28 @@ body {
     border: none;   
 }
 
-.deleteBtn{
-    color: red;
-    border: 1px solid black;
-    border-radius: 5px;
-    background-color: white;
+
+
+
+
+/* Styling for the Edit and Delete buttons */
+.editBtn, .deleteBtn {
+    background-color: #007bff; /* Primary blue background */
+    color: #fff; /* White text color */
+    border: none; /* Remove default border */
+    padding: 5px 15px; /* Add padding for better click area */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 12px; /* Font size for better readability */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
 }
 
-.editBtn{
-    color: red;
-    border: 1px solid black;
-    border-radius: 5px;
-    background-color: white;
+/* Hover effect for Edit and Delete buttons */
+.editBtn:hover, .deleteBtn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Active state for Edit and Delete buttons */
+.editBtn:active, .deleteBtn:active {
+    background-color: #004085; /* Even darker blue when clicked */
 }
