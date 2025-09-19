@@ -4,8 +4,10 @@ import { Routes, Route } from "react-router-dom";
 
 // Components
 import GlobeView from "./components/GlobeView";
+import NotFound from "./components/NotFound";
 import Calculator from "./questions/Calculator";
 import ToDo from "./questions/ToDo";
+import TodoFinal from "./questions/TodoFinal";
 
 function App() {
   return (
@@ -16,6 +18,9 @@ function App() {
       {/* Projects */}
       <Route path="/calculator" element={<Calculator />} />
       <Route path="/todo" element={<ToDo />} />
+      <Route path="/todofinal" element={<TodoFinal />} />
+      {/* Catch-all route for unmatched paths */}
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
