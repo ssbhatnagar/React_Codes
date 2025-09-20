@@ -1,4 +1,5 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
+import "../styles/PasswordGenerator.css";
 
 const PasswordGenerator = () => {
   const [passwordLength, setPasswordLength] = useState(4);
@@ -8,6 +9,7 @@ const PasswordGenerator = () => {
   const [includeSymbols, setIncludeSymbols] = useState(false);
   const [generatedPassword, setGeneratedPassword] = useState("");
   const [error, setError] = useState("");
+  const passwordRef = useRef(null);
 
   const generatePassword = useCallback(() => {
     setGeneratedPassword("");
@@ -76,10 +78,16 @@ const PasswordGenerator = () => {
     setError("");
   };
 
+  const copyPasswordToClipboard = () => {
+    // minimal copy handler requested by user
+    window.navigator.clipboard.writeText(generatedPassword);
+    passwordRef.current?.select();
+  };
+
   return (
-    <div>
+    <div className="App">
       <h2>Password Generator</h2>
-      <div>
+      <div className="length-input">
         <label>
           Password length
           <input
@@ -91,7 +99,7 @@ const PasswordGenerator = () => {
           />
         </label>
       </div>
-      <div>
+      <div className="length-slider">
         <label>
           <input
             type="range"
@@ -104,7 +112,7 @@ const PasswordGenerator = () => {
           <span>{passwordLength}</span>
         </label>
       </div>
-      <div>
+      <div className="include-uppercase">
         <label>
           Include uppercase
           <input
@@ -114,7 +122,7 @@ const PasswordGenerator = () => {
           />
         </label>
       </div>
-      <div>
+      <div className="include-lowercase">
         <label>
           Include lowercase
           <input
@@ -124,7 +132,7 @@ const PasswordGenerator = () => {
           />
         </label>
       </div>
-      <div>
+      <div className="include-numbers">
         <label>
           Include numbers
           <input
@@ -134,7 +142,7 @@ const PasswordGenerator = () => {
           />
         </label>
       </div>
-      <div>
+      <div className="include-symbols">
         <label>
           Include symbols
           <input
@@ -144,15 +152,25 @@ const PasswordGenerator = () => {
           />
         </label>
       </div>
-      <div>
+      <div className="generate-button">
         <button onClick={generatePassword}>Generate Password</button>
       </div>
-      <div>
+      <div className="result">
         {error && <p>{error}</p>}
         {generatedPassword && (
-          <div>
+          <div className="generated-block">
             <strong>Generated Password:</strong>
-            <div>{generatedPassword}</div>
+            <input
+              className="generated-value"
+              readOnly
+              ref={passwordRef}
+              value={generatedPassword}
+            />
+            <div className="copy-controls">
+              <button className="copy-button" onClick={copyPasswordToClipboard}>
+                Copy
+              </button>
+            </div>
           </div>
         )}
       </div>
