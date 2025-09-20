@@ -180,3 +180,31 @@ export default PasswordGenerator;
 ---
 
 End of PasswordGeneratorAlgo.
+
+---
+
+## Recent change: copy-to-clipboard feature
+
+I added a copy-to-clipboard button and handler to the `PasswordGenerator` component. Summary of the exact additions:
+
+
+- State and ref:
+
+```
+const passwordRef = useRef(null);
+```
+
+- Function (minimal handler as requested):
+
+```javascript
+const copyPasswordToClipboard = () => {
+  window.navigator.clipboard.writeText(generatedPassword);
+  passwordRef.current?.select();
+}
+```
+
+- Markup: the generated password is now rendered in a readOnly `<input>` with `ref={passwordRef}` so `.select()` works; a `Copy` button calls `copyPasswordToClipboard`.
+
+- CSS classes used: `.generated-block`, `.generated-value` (now an input), `.copy-controls`, `.copy-button`.
+
+This documents the simplified copy method and the supporting DOM change (readOnly input + ref).
