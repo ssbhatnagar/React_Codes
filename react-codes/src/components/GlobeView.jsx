@@ -6,6 +6,7 @@ const projects = [
   { name: "Todo App", lat: 28.6, lng: 77.2, route: "/todo" }, // Delhi
   { name: "Calculator", lat: 19.0, lng: 72.8, route: "/calculator" }, // Mumbai
   { name: "Advanced Todo App", lat: 12.9, lng: 77.6, route: "/todofinal" }, // Bangalore
+  { name: "Password Generator", lat: 37.77, lng: -122.42, route: "/password-generator" }, // San Francisco
 ];
 
 const GlobeView = () => {

@@ -8,6 +8,7 @@ import NotFound from "./components/NotFound";
 import Calculator from "./questions/Calculator";
 import ToDo from "./questions/ToDo";
 import TodoFinal from "./questions/TodoFinal";
+import PasswordGenerator from "./questions/PasswordGenerator";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path="/calculator" element={<Calculator />} />
       <Route path="/todo" element={<ToDo />} />
       <Route path="/todofinal" element={<TodoFinal />} />
+      <Route path="/password-generator" element={<PasswordGenerator />} />
       {/* Catch-all route for unmatched paths */}
       <Route path="*" element={<NotFound />} />
     </Routes>
