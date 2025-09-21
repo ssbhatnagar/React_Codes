@@ -9,6 +9,7 @@ import Calculator from "./questions/Calculator";
 import ToDo from "./questions/ToDo";
 import TodoFinal from "./questions/TodoFinal";
 import PasswordGenerator from "./questions/PasswordGenerator";
+import WeatherApp from "./questions/WeatherApp";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route path="/todo" element={<ToDo />} />
       <Route path="/todofinal" element={<TodoFinal />} />
       <Route path="/password-generator" element={<PasswordGenerator />} />
+      <Route path="/weather" element={<WeatherApp />} />
       {/* Catch-all route for unmatched paths */}
       <Route path="*" element={<NotFound />} />
     </Routes>
