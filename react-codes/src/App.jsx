@@ -3,13 +3,13 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 // Components
-import GlobeView from "./components/GlobeView";
-import NotFound from "./components/NotFound";
-import Calculator from "./questions/Calculator";
-import ToDo from "./questions/ToDo";
-import TodoFinal from "./questions/TodoFinal";
-import PasswordGenerator from "./questions/PasswordGenerator";
-import WeatherApp from "./questions/WeatherApp";
+import GlobeView from "./utils/GlobeView";
+import NotFound from "./utils/NotFound";
+import Calculator from "./components/Calculator";
+import ToDo from "./components/ToDo";
+import TodoFinal from "./components/TodoFinal";
+import PasswordGenerator from "./components/PasswordGenerator";
+import WeatherApp from "./components/WeatherApp";
 
 function App() {
   return (
