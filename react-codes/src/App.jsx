@@ -5,11 +5,11 @@ import { Routes, Route } from "react-router-dom";
 // Components
 import GlobeView from "./utils/GlobeView";
 import NotFound from "./utils/NotFound";
-import Calculator from "./components/Calculator";
-import ToDo from "./components/ToDo";
-import TodoFinal from "./components/TodoFinal";
-import PasswordGenerator from "./components/PasswordGenerator";
-import WeatherApp from "./components/WeatherApp";
+import Calculator from "./components/Calculator/Calculator";
+import ToDo from "./components/TodoAppAllType/ToDo";
+import TodoFinal from "./components/TodoAppAllType/TodoFinal";
+import PasswordGenerator from "./components/PasswordGenerator/PasswordGenerator";
+import WeatherApp from "./components/WeatherApp/WeatherApp";
 
 function App() {
   return (

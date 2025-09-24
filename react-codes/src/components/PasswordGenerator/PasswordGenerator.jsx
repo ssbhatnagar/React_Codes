@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect, useRef } from "react";
-import "../styles/PasswordGenerator.css";
+import "../../styles/PasswordGenerator.css";
 
 const PasswordGenerator = () => {
   const [passwordLength, setPasswordLength] = useState(4);

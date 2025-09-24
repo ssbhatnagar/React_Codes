@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useWeather from "../hooks/useWeather";
+import useWeather from "../../hooks/useWeather";
 const WeatherApp = () => {
   const [city, setCity] = useState("");
   const [searchCity, setSearchCity] = useState("");

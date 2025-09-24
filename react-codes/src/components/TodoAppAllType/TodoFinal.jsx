@@ -4,7 +4,7 @@
 */
 
 import React, { useState } from "react";
-import "../styles/TodoFinal.css";
+import "../../styles/TodoFinal.css";
 
 const TodoFinal = () => {
   const [inputValues, setInputValues] = useState("");
