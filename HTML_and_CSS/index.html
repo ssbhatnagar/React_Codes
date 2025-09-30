@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <h1>Registration form</h1>
+    <form action="/action.php">
+      <label>
+        First Name
+        <input type="text" placeholder="Enter Firstname" />
+      </label>
+      <br />
+      <br />
+      <label>
+        Last Name
+        <input type="text" placeholder="Enter Lastname" />
+      </label>
+      <br />
+      <br />
+      <label>
+        Mobile No
+        <input type="tel" placeholder="Enter phone number"
+        pattern="[0-9]{10}" required />
+      </label>
+      <br />
+      <br />
+      <label>
+        Email
+        <input type="email" placeholder="Enter your email" />
+      </label>
+      <br />
+      <br />
+      <label>
+        Set Password
+        <input type="password" placeholder="Set password" />
+      </label>
+      <br />
+      <br />
+      <br />
+      <fieldset>
+        <legend>Chose your year of experience from the below options</legend>
+        <div>
+          <div>
+            <input type="radio" name="experience" value="fresher" />
+            <label for="fresher">Fresher</label>
+          </div>
+          <div>
+            <input type="radio" name="experience" value="experienced" />
+            <label for="experienced">Experienced < 2 years</label>
+          </div>
+          <div>
+            <input type="radio" value="professional" name="experience" />
+            <label for="professional">Professional > 2 years</label>
+          </div>
+        </div>
+      </fieldset>
+      <br />
+      <br />
+      <fieldset>
+        <legend>Select your Tech Stack</legend>
+        <div>
+          <div>
+            <input type="checkbox" name="techstack" value="front-end" />
+            <label for="techstack">Front-End</label>
+          </div>
+          <div>
+            <input type="checkbox" name="techstack" value="DevOps" />
+            <label for="DevOps">DevOps</label>
+          </div>
+          <div>
+            <input type="checkbox" name="techstack" value="back-end" />
+            <label for="back-end">Back-End</label>
+          </div>
+        </div>
+      </fieldset>
+      <br>
+      <br>
+      <fieldset>
+        <legend>Select your nearest city from the dropdown below</legend>
+        <select name="city" required>
+            <option value="" disabled selected >Select a city</option>
+          <option value="">Delhi</option>
+          <option value="Pune">Pune</option>
+          <option value="Kolkata">Kolkata</option>
+          <option value="Mumbai">Mumbai</option>
+        </select>
+    </fieldset>
+    <br>
+    <br>
+    <Span><button type="submit">Submit</button><button type="reset">Reset</button></Span>
+    </form>
+  </body>
+</html>
