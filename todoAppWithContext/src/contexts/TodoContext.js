@@ -34,4 +34,3 @@ export const useTodo = () => {
 // we dont want to wrap the components using TodoContext.Provider so we just used its value to export
 export const TodoProvider = TodoContext.Provider;
 
- 
