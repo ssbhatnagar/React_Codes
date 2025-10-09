@@ -1,20 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import styles from "../Css/ProductCard.module.css";
+import { useCart } from "../context/CartContext";
 
 
 function ProductCard({ product }) {
   const [quantity, setQuantity] = useState(1);
+  const { addToCart, cartItems } = useCart();
+
+  useEffect(()=>{
+    const existingItem = cartItems.find((item) => item.id === product.id);
+    if(existingItem){
+      setQuantity(existingItem.quantity);
+    } else {
+      setQuantity(1);
+    }
+  }, [cartItems])
+
+  function handleAddToCart() {
+  addToCart(product, quantity); 
+}
+
 
   function handleQuantityIncrement() {
-    setQuantity(quantity + 1);
+    setQuantity(q => q + 1);
   }
 
   function handleQuantityDecrement() {
     if (quantity > 0) {
-      setQuantity(quantity - 1);
+      setQuantity(q => (q > 1 ? q - 1 : 1));
     }
   }
+
+ 
 
   return (
     <div>
@@ -40,7 +58,9 @@ function ProductCard({ product }) {
         </div>
         <br />
         <div>
-          <button className={styles.addToCart}>Add to Cart</button>
+          <button className={styles.addToCart} onClick={handleAddToCart}>
+            Add to Cart
+          </button>
         </div>
       </div>
     </div>
