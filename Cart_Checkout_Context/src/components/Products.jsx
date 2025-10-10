@@ -12,9 +12,6 @@ function Products() {
     product.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Agar search term hai to filteredProducts use karo, warna original products
-  const displayProducts = searchTerm ? filteredProducts : products;
-
   // Loading aur error states handle karna
 
   if (loading) return <div>Loading...</div>;
