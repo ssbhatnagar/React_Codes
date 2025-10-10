@@ -3,16 +3,19 @@ import './App.css'
 import Body from './components/Body'
 import {CartProvider } from './context/CartContext'
 import { SearchProvider } from './context/SearchContext';
+import { FilterProvider } from './context/FilterContext.jsx';
 
 function App() {
  
   return (
-    <BrowserRouter> 
-      <CartProvider>
-      <SearchProvider>
-        <Body />
-      </SearchProvider>
-      </CartProvider>
+    <BrowserRouter>
+      <FilterProvider>
+        <CartProvider>
+          <SearchProvider>
+            <Body />
+          </SearchProvider>
+        </CartProvider>
+      </FilterProvider>
     </BrowserRouter>
   )
 }

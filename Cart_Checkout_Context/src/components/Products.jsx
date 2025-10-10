@@ -2,44 +2,46 @@ import React from "react";
 import ProductCard from "./ProductCard";
 import useProducts from "../Hooks/useProducts";
 import { useSearch } from "../context/SearchContext";
+import { useFilter } from "../context/FilterContext.jsx";
 import styles from "../Css/Products.module.css";
 
 function Products() {
   const { products, loading, error } = useProducts();
   const { searchTerm } = useSearch();
-
-  const filteredProducts = products.filter((product) =>
-    product.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  // Loading aur error states handle karna
+  const { selectedCategory } = useFilter(); // 👈 new line
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error loading products</div>;
+
+  // 🔸 Step 2: Combine Search + Filter Logic
+  const filteredProducts = products.filter((product) => {
+    const matchesSearch = product.title
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    const matchesCategory =
+      selectedCategory === "All" || product.category === selectedCategory;
+    return matchesSearch && matchesCategory; // ✅ both conditions
+  });
 
   return (
     <div>
       <div>
         <h1 className={styles.heading}>Our Products</h1>
       </div>
-      {searchTerm ? (
-        <div className={styles.productsContainer}>
-          {filteredProducts.map((p) => (
-            <ProductCard key={p.id} product={p} />
-          ))}
-        </div>
-      ) : (
-        <div className={styles.productsContainer}>
-          {products.map((product) => (
+      <div className={styles.productsContainer}>
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map((product) => (
             <ProductCard
               key={product.id}
               product={product}
               description={product.description}
               image={product.image}
             />
-          ))}
-        </div>
-      )}
+          ))
+        ) : (
+          <p>No products found.</p>
+        )}
+      </div>
     </div>
   );
 }
