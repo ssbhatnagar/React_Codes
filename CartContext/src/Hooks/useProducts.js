@@ -11,7 +11,7 @@ function useProducts(){
             try{
                 const rawData = await fetch('https://dummyjson.com/products');
                 if(!rawData.ok){
-                    throw new error("Network response is not ok");
+                    throw new Error("Network response is not ok");
                 }
                 const data = await rawData.json();
                 setProducts(data);
@@ -23,8 +23,7 @@ function useProducts(){
             }
         };
         fetchData();
-    },)
-
+    }, [])
     return {products, loading, error};
 }
 export default useProducts
