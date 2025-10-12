@@ -21,6 +21,6 @@ Pehele step mai hum ek API le lenge jisme mock data rahega products ka aur us mo
 </ul>
 <li>Function ko call karna within useEffect aur uska dependency arrray empty rahega.</li>
 <li>Within useProduct function return {products, loading, error}</li>
-<li>Finally export default useProduct</li>
 </ol>
+<li>Finally export default useProduct aur hook ready hai</li>
 </ol>
