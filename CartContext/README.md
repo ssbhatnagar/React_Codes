@@ -1,16 +1,19 @@
-# React + Vite
+# Step By Step Algo for this Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## step 1:
 
-Currently, two official plugins are available:
+Pehele step mai hum ek API le lenge jisme mock data rahega products ka aur us mock data ko use karenge hum ek custom hook mai (useProducts.js), vo custom hook ka ye kaam hoga.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+<ol>
+<li>States define karna:</li>
+<ol>
+<li>products ke liye (products and setProducts) ye ek empty array hoga. </li>
+<li>Ek state hogi for error (error, setError) iski default value null hogi, jo ki API fail hone par (error condition) mai user ko batayega ki kya error hai.</li>
+<li>Ek state hogi loading (loading, setLoading) iski default value true hogi, ye badically UI par show karega loading.. us interval ke beech jab API data fetch karegi aur show hoga data UI par.  </li>
+</ol>
+<li>useEffect hook - is step mai ek function (fetchData) define karenge useEffect mai jo data fetch karenga, ye function async function hoga.</li>
+<ol>
+<li>within this function fetchData try catch aur finally ka block bana lena</li>
+<li>Try catch mai actual API call hoga using fetch agar uska response ok hai to phir us data ko json mai convert karenge aur further setProducts mai data pass kar denge</li>
+</ol>
+</ol>
