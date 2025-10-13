@@ -1,6 +1,6 @@
 # Step By Step Algo for this Project
 
-## STEP 1:
+## STEP - 1 :
 
 Pehele step mai hum ek API le lenge jisme mock data rahega products ka aur us mock data ko use karenge hum ek custom hook mai (useProducts.js), vo custom hook ka ye kaam hoga. Custom hook bana lene se code clean rahega aur uska data kahi bhi use ho jayega. 
 
@@ -35,3 +35,19 @@ Pehele step mai hum ek API le lenge jisme mock data rahega products ka aur us mo
 <br/>
 <li>Finally export default useProduct aur hook ready hai</li>
 </ol>
+
+## STEP - 2
+
+Is step mai components banane hai aur useProducts wale data ko present karna hai component mai, but pehele ek structure bana lenge components ka pure project mai jo rehene wala hai. Har WebApp par basically 3 component hote hai Header then Body aur last mai Footer. Mai kya karunga ki ek skeleton code for Header, Body aur Footer ka likh dunga. Us ke baas for a better scenario pehele ek component bana lete hai named as productList usme list mai sare data ko present kar denge, ye ek template hoga to know API theek call ho raha hai ya nahi. But what we want to achieve is to create 2 component 
+
+1. ProductList -  isme ek product ki list hogi, isko banane ke liye sabse pehele hook (useProducts) ko import kar lo inside this component uske baad phir ye do contition check karo - if (loading) return a div Loading data .... and second condition if (error) return a div Error in loading products. Once ye dono check clear ho jate hai to phir Products par map function use karo aur ProductCard component ko call karo us map mai aur Products ko pass kar do as props see below code. Samajh aa jayega code se
+
+![code snippet](image-1.png)
+
+2. ProductCard - ye ek component hoga jisme product ki details hongi jaise ki product ka name, choti si description, thubnail, Rating. Isko banane ke liye product as a prop accept karo
+
+![Flipkart](image-2.png)
+
+
+
+jab ye do component ban jayenge to inko Body mai place kar diya jayega. Aur body ko App.jsx mai call kiya jayega. 
