@@ -14,7 +14,7 @@ function useProducts(){
                     throw new Error("Network response is not ok");
                 }
                 const data = await rawData.json();
-                setProducts(data);
+                setProducts(data.products); // yaha par data object mai aa raha hai but we want only products data
             }catch(error){
                 console.log("Error in fetching data: ", error)
                 setError("Error in fetching data")
@@ -26,4 +26,4 @@ function useProducts(){
     }, [])
     return {products, loading, error};
 }
-export default useProducts
+export default useProducts;
