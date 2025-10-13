@@ -44,10 +44,8 @@ Is step mai components banane hai aur useProducts wale data ko present karna hai
 
 ![code snippet](image-1.png)
 
-2. ProductCard - ye ek component hoga jisme product ki details hongi jaise ki product ka name, choti si description, thubnail, Rating. Isko banane ke liye product as a prop accept karo
+2. ProductCard - ye ek component hoga jisme product ki details hongi jaise ki product ka name, choti si description, thubnail, Rating. Isko banane ke liye product as a prop accept karo. Maine starts bhi add kiye hai product card mai vo stars add karne ka logic likha hai renderStars file mai jo utils mai hai. 
 
 ![Flipkart](image-2.png)
-
-
 
 jab ye do component ban jayenge to inko Body mai place kar diya jayega. Aur body ko App.jsx mai call kiya jayega. 
