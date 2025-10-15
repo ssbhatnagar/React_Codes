@@ -11,10 +11,13 @@ function ProductList() {
   if (error) return <div>Error in loading products</div>;
 
   return (
+    <div className={styles.headingContainer}>
+    <h2 className={styles.heading}>OUR WEIRED PODUCTS</h2>
     <div className={styles.productsContainer}>
       {products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
+    </div>
     </div>
   );
 }

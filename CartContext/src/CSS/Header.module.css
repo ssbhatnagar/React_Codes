@@ -1,0 +1,17 @@
+.mainHeaderDiv{
+    background-color: black;
+    color: white;
+    display:inline-block;
+    margin-bottom: 50px;
+    
+}
+
+.heading{
+    text-align: center;
+}
+
+.centerContainer{
+    text-align: center;
+    border: 2px solid red;
+    margin-bottom: 10px;
+}
