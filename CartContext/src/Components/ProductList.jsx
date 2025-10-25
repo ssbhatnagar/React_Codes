@@ -12,7 +12,7 @@ function ProductList() {
 
   return (
     <div className={styles.headingContainer}>
-    <h2 className={styles.heading}>OUR WEIRED PODUCTS</h2>
+    {/* <h2 className={styles.heading}>OUR WEIRED PODUCTS</h2> */}
     <div className={styles.productsContainer}>
       {products.map((product) => (
         <ProductCard key={product.id} product={product} />

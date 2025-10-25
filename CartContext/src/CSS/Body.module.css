@@ -1,4 +1,10 @@
 .body{
     background-color: black;
     padding: 20px;
+    margin: 10px;
+}
+.filterListContainer{
+    display: flex;
+    margin: 10px
+
 }
