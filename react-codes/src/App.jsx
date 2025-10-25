@@ -10,6 +10,7 @@ import ToDo from "./components/TodoAppAllType/ToDo";
 import TodoFinal from "./components/TodoAppAllType/TodoFinal";
 import PasswordGenerator from "./components/PasswordGenerator/PasswordGenerator";
 import WeatherApp from "./components/WeatherApp/WeatherApp";
+import ApiCalling from "./components/ApiCalling/ApiCalling";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <Route path="/todofinal" element={<TodoFinal />} />
       <Route path="/password-generator" element={<PasswordGenerator />} />
       <Route path="/weather" element={<WeatherApp />} />
+      <Route path="/api-calling" element={<ApiCalling />} />
       {/* Catch-all route for unmatched paths */}
       <Route path="*" element={<NotFound />} />
     </Routes>

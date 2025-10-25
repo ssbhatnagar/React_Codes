@@ -1,17 +1,15 @@
-.mainHeaderDiv{
-    background-color: black;
-    color: white;
-    display:inline-block;
-    margin-bottom: 50px;
-    
-}
-
 .heading{
-    text-align: center;
+    text-align: left;
+    margin-left: 10px;
 }
 
-.centerContainer{
-    text-align: center;
+.headerContainer{
     border: 2px solid red;
     margin-bottom: 10px;
+    height: 100px
+}
+
+.SearchBar{
+    text-align: center;
+    
 }
