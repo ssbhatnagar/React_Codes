@@ -1,19 +1,18 @@
 import React from 'react'
-import styles from '../CSS/SearchBar.module.css'
+import { useSearch } from '../Contexts/SearchContext'
 
 function SearchBar() {
-
-  
-  
+  const { searchTerm, setSearchTerm } = useSearch();
 
   return (
-    <div className={styles.SearchBar}>
-        <input
-        // value={searchedItem}
-        className={styles.input}
+    <div>
+      <input
         type="search"
-        placeholder='Search for products, brands and more'
-        ></input>
+        placeholder='search products...'
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      {/* <button>Search</button> */}
     </div>
   )
 }

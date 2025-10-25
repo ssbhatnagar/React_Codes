@@ -1,11 +1,15 @@
 import './App.css'
 import Body from './Components/Body'
+import { SearchProvider } from './Contexts/SearchContext'
 
 function App() {
 
   return (
     <div>
-    <Body/>
+    <SearchProvider>
+      <Body/>
+    </SearchProvider>
+    
     </div>
       
     
