@@ -36,11 +36,13 @@ Pehele step mai hum ek API le lenge jisme mock data rahega products ka aur us mo
 <li>Finally export default useProduct aur hook ready hai</li>
 </ol>
 
-## STEP - 2
+## STEP - 2:
 
 Is step mai components banane hai aur useProducts wale data ko present karna hai component mai, but pehele ek structure bana lenge components ka pure project mai jo rehene wala hai. Har WebApp par basically 3 component hote hai Header then Body aur last mai Footer. Mai kya karunga ki ek skeleton code for Header, Body aur Footer ka likh dunga. Us ke baas for a better scenario pehele ek component bana lete hai named as productList usme list mai sare data ko present kar denge, ye ek template hoga to know API theek call ho raha hai ya nahi. But what we want to achieve is to create 2 component 
 
-1. ProductList -  isme ek product ki list hogi, isko banane ke liye sabse pehele hook (useProducts) ko import kar lo inside this component uske baad phir ye do contition check karo - if (loading) return a div Loading data .... and second condition if (error) return a div Error in loading products. Once ye dono check clear ho jate hai to phir Products par map function use karo aur ProductCard component ko call karo us map mai aur Products ko pass kar do as props see below code. Samajh aa jayega code se
+1. ProductList -  isme ek product ki list hogi, isko banane ke liye sabse pehele hook (useProducts) ko import kar lo inside this component uske baad phir ye do contition check karo - if (loading) return a div Loading data .... and second condition if (error) return a div Error in loading products. Once ye dono check clear ho jate hai to phir Products par map function use karo aur ProductCard component ko call karo us map mai aur Products ko pass kar do as props see below code. Samajh aa jayega code se.
+
+* ProductList CSS: product list ki css implement karne thoda sa tricky ho sakta hai kyuki har card component ko row aur column mai place karna hai
 
 ![code snippet](image-1.png)
 

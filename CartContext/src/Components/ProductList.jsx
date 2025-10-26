@@ -29,7 +29,8 @@ function ProductList() {
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
-      </div> :
+      </div> 
+      :
         <div className={styles.productsContainer}>
         {searchedItem.map((product) => (
           <ProductCard key={product.id} product={product} />
