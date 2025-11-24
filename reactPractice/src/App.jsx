@@ -43,6 +43,16 @@ function App() {
     }
   }
 
+  function markAsDone(currentTodo) {
+    setTodos((prevTodo) =>
+      prevTodo.map((todo) =>
+        todo.id === currentTodo.id
+          ? { ...todo, completed: !todo.completed }
+          : todo
+      )
+    );
+  }
+
   return (
     <div>
       <div>
@@ -66,17 +76,27 @@ function App() {
                   onChange={(e) => setEditText(e.target.value)}
                 ></input>
               ) : (
-                <span>{todo.todo}</span>
+                <span
+                  style={{
+                    textDecoration: todo.completed ? "line-through" : "none",
+                  }}
+                >
+                  {todo.todo}
+                </span>
               )}
 
-              <span>
-                <button onClick={() => deleteTodo(todo.id)}>Delete</button>
-                {todo.id === editingId ? (
+              <input
+                type="checkbox"
+                checked={todo.completed}
+                onChange={() => markAsDone(todo)}
+              ></input>
+              <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+              {!todo.completed &&
+                (todo.id === editingId ? (
                   <button onClick={() => updateTodo(todo)}>Update</button>
                 ) : (
                   <button onClick={() => editTodo(todo)}>Edit</button>
-                )}
-              </span>
+                ))}
             </li>
           ))}
         </ul>
