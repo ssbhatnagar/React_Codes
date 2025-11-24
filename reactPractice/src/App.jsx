@@ -3,12 +3,15 @@ import { useState } from "react";
 function App() {
   const [userInput, setuserInput] = useState("");
   const [todos, setTodos] = useState([]);
+  const [editingId, setEditingId] = useState(null);
+  const [editText, setEditText] = useState("");
 
   function submitHandler() {
     if (userInput.trim() !== "") {
       const todo = {
         id: Date.now(),
         todo: userInput,
+        completed: false,
       };
       setTodos((prevTodo) => [...prevTodo, todo]);
       setuserInput("");
@@ -17,8 +20,27 @@ function App() {
     }
   }
 
-  function deleteTodo(index) {
-    setTodos(todos.filter((todo) => index !== todo.id));
+  function deleteTodo(id) {
+    setTodos(todos.filter((todo) => id !== todo.id));
+  }
+
+  function editTodo(currentTodo) {
+    setEditText(currentTodo.todo);
+    setEditingId(currentTodo.id);
+  }
+
+  function updateTodo(currentTodo) {
+    if (editText.trim() !== "") {
+      setTodos((prevTodo) =>
+        prevTodo.map((todo) =>
+          todo.id === currentTodo.id ? { ...todo, todo: editText } : todo
+        )
+      );
+      setEditingId(null);
+      setEditText("");
+    } else {
+      window.alert("Todo cannot be empty");
+    }
   }
 
   return (
@@ -36,10 +58,24 @@ function App() {
         <ul>
           {todos.map((todo) => (
             <li key={todo.id}>
-              {todo.todo}
+              {todo.id === editingId ? (
+                <input
+                  type="text"
+                  placeholder="edit Todo"
+                  value={editText}
+                  onChange={(e) => setEditText(e.target.value)}
+                ></input>
+              ) : (
+                <span>{todo.todo}</span>
+              )}
+
               <span>
                 <button onClick={() => deleteTodo(todo.id)}>Delete</button>
-                <button>Edit</button>
+                {todo.id === editingId ? (
+                  <button onClick={() => updateTodo(todo)}>Update</button>
+                ) : (
+                  <button onClick={() => editTodo(todo)}>Edit</button>
+                )}
               </span>
             </li>
           ))}
