@@ -1,0 +1,27 @@
+import { Routes, Route } from 'react-router-dom'
+import './App.css'
+
+// Pages
+import Home from './pages/Home'
+
+// Components
+import TodoApp from './components/TodoApp/TodoApp'
+import Calculator from './components/Calculator/Calculator'
+import PasswordGenerator from './components/PasswordGenerator/PasswordGenerator'
+import WeatherApp from './components/WeatherApp/WeatherApp'
+import ApiCalling from './components/ApiCalling/ApiCalling'
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/todoapp" element={<TodoApp />} />
+      <Route path="/calculator" element={<Calculator />} />
+      <Route path="/password-generator" element={<PasswordGenerator />} />
+      <Route path="/weather" element={<WeatherApp />} />
+      <Route path="/api-calling" element={<ApiCalling />} />
+    </Routes>
+  )
+}
+
+export default App
