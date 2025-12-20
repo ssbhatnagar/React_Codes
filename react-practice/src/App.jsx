@@ -10,6 +10,7 @@ import Calculator from './components/Calculator/Calculator'
 import PasswordGenerator from './components/PasswordGenerator/PasswordGenerator'
 import WeatherApp from './components/WeatherApp/WeatherApp'
 import ApiCalling from './components/ApiCalling/ApiCalling'
+import Twitter from './components/TwitterClone/Twitter'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Route path="/password-generator" element={<PasswordGenerator />} />
       <Route path="/weather" element={<WeatherApp />} />
       <Route path="/api-calling" element={<ApiCalling />} />
+      <Route path="/twitter" element ={<Twitter/>} />
     </Routes>
   )
 }

@@ -9,6 +9,7 @@ export default function Home() {
     { name: 'Password Generator', path: '/password-generator' },
     { name: 'Weather App', path: '/weather' },
     { name: 'API Calling', path: '/api-calling' },
+    {name: 'twitterClone', path: '/twitter'}
   ]
 
   return (
