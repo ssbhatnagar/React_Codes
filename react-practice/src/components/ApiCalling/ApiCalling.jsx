@@ -1,10 +1,23 @@
-import React from 'react'
+import useProducts from '../../hooks/useProducts';
 
-export default function ApiCalling() {
-  return (
-    <div style={{ padding: '2rem', textAlign: 'center' }}>
-      <h1>ApiCalling</h1>
-      <p>API calling example will be implemented here</p>
+
+const App = () => {
+
+  const {products, error, loading} = useProducts();
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error loading products</div>;
+
+  return(
+    <div>
+      {products.map((product) => 
+      <li key={product.id}> {product.id} - {product.title}  - <b>{product.category}  </b> </li>
+      )}
     </div>
   )
+  
+  
 }
+
+
+export default App
