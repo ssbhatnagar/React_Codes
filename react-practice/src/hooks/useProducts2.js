@@ -2,7 +2,7 @@ import {useEffect, useState} from "react"
 
 function useProducts2(){
 
-    const [data, setData] = useState([]);
+    const [products, setProducts] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -15,8 +15,8 @@ function useProducts2(){
                 if(!rawData.ok){
                     throw new Error ("Error in fetching API")
                 }
-                const products = await rawData.json();
-                setData(products)
+                const data = await rawData.json();
+                setProducts(data)
             }catch(error){
                 console.log("Error in fetching data", error)
                 setError("Error in loading")
@@ -28,7 +28,7 @@ function useProducts2(){
         
     }, [])
 
-     return {data, error, loading}
+    return {products, error, loading}
 
 }
 export default useProducts2;
