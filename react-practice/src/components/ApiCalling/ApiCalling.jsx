@@ -11,7 +11,11 @@ const App = () => {
   return(
     <div>
       {products.map((product) => 
-      <li key={product.id}> {product.id} - {product.title}  - <b>{product.category}  </b> </li>
+
+      <li key={product.id}>
+       {product.id} - {product.title}  - <b>{product.category}  
+       </b> 
+       </li>
       )}
     </div>
   )
