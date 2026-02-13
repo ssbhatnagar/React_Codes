@@ -1,152 +1,138 @@
-import React, { useState, useEffect } from "react"; // FIXED: useEffect import karna bhul gaye the
+import React, { useState, useEffect } from "react";
 
 function FormApp() {
+
+  // STEP 1 Pehele sabse intial values ko rakhenge ek jagah par yaha use state use nahi karemge kyuki step 2 mai useSate ka role aayega jaha local storage assign hogi
   const initialValues = {
-    firstname: "",
-    lastname: "",
-    email: "",
-    phoneNo: "",
+    firstName: "",
+    lastName: "",
+    dob: "", // lowercase 'd'
     address: "",
-    dob: "",
     class: "",
-    house: "",
     hobbies: [],
-    parentIncome: 500000
+    house: ""
   };
 
-  // 1. LOCAL STORAGE LOAD (Lazy Initializer)
+  // STEP 2. GET: Lazy Initializer yaha hum local stodage ko get karnege usestate se, pehele dekhenge ki kya usme alrady kuch stored hai ?? agar stored hai to waha se get kar lenge nahi to initial values ko get kar lenge jo ki sabse pehele run par empty hi hongi. 
   const [formData, setFormData] = useState(() => {
     const savedData = localStorage.getItem("userForm");
     return savedData ? JSON.parse(savedData) : initialValues;
   });
 
-  // 2. LOCAL STORAGE SAVE (Side Effect)
+  // STEP 3 SET: Auto-save on every change yaha hum useEffect ka use karenge aur autosave feature add kar denge, jaba jab fromData mai koi change hoga tab tab ye run hoga aur save kar dega data ko local storgae mai set kar denge
   useEffect(() => {
     localStorage.setItem("userForm", JSON.stringify(formData));
   }, [formData]);
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    if (type === "checkbox") {
+  // STEP 4. Single Handler for all Inputs ye to clear hai hi yaha sirf ek baat dhyan deni hi ki iska kaam kaise ho raha hai e as event liya hai uske baad name value vo sab param hai aur e.target hai baki add remove hobby ka logic ek baar dhaayn se samjh lo line by line likha hai
+
+  function handleFormData(e) {
+    const { name, value, type, checked } = e.target; // param mai pass kar diya 
+    if (type === "checkbox") { 
       setFormData((prev) => {
-        const existingHobbies = prev.hobbies;
-        const updatedHobbies = checked
-          ? [...existingHobbies, value]
-          : existingHobbies.filter((h) => h !== value);
+        const updatedHobbies = checked // updated hobbies jo check se mili unko save kr liya 
+          ? [...prev.hobbies, value] // Add hobby
+          : prev.hobbies.filter((h) => h !== value); // Remove hobby
         return { ...prev, hobbies: updatedHobbies };
       });
     } else {
-      setFormData((prev) => ({ ...prev, [name]: value }));
+      setFormData((prev) => ({ ...prev, [name]: value })); // yaha [name] : value sab key value par iterate kar lega 
     }
-  };
+  }
 
-  // 3. FIXED SUBMIT
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Ab ye error nahi dega kyunki 'e' niche se pass ho raha hai
-    console.log("Final Form Data:", formData);
+  // STEP 5. handle submit ka use
+  function handleSubmit(e) {
+    e.preventDefault(); // Ye zaroori hai submit par
+    console.log("Final form Data 2", formData);
     alert("Form Submitted!");
-  };
+  }
 
-  // 4. FIXED RESET
-  const handleReset = () => {
+  // STEP 6 reset from
+  function resetForm() {
     setFormData(initialValues);
-  };
+  }
 
+  // STEP 7 JSX ka part
   return (
-    <div style={{ padding: "20px", maxWidth: "500px" }}>
-      {/* FIXED: onSubmit={handleSubmit} likhna kafi hai, extra arrow function ki zarurat nahi */}
-      <form onSubmit={handleSubmit}>
-        
-        {/* --- Text Inputs --- */}
-        <div>
-          <label>First Name: </label>
-          <input type="text" name="firstname" value={formData.firstname} onChange={handleChange} />
-        </div>
-        <br />
-        <div>
-          <label>Last Name: </label>
-          <input type="text" name="lastname" value={formData.lastname} onChange={handleChange} />
-        </div>
-        <br />
-        <div>
-          <label>Email: </label>
-          <input type="email" name="email" value={formData.email} onChange={handleChange} />
-        </div>
-        <br />
-        <div>
-          <label>Phone: </label>
-          <input type="tel" name="phoneNo" value={formData.phoneNo} onChange={handleChange} />
-        </div>
-        <br />
-        <div>
-          <label>Address: </label>
-          <textarea name="address" value={formData.address} onChange={handleChange} />
-        </div>
-        <br />
-        <div>
-          <label>DOB: </label>
-          <input type="date" name="dob" value={formData.dob} onChange={handleChange} />
-        </div>
-        <br />
+    <div>
+      <form onSubmit={handleSubmit}> {/* onSubmit yahan hona chahiye */}
+        <fieldset>
+          <legend>Name Section</legend>
+          <input
+            type="text"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleFormData} // Direct pass karo, 'e' apne aap chala jayega
+            placeholder="First Name"
+          />
+          <input
+            type="text"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleFormData}
+            placeholder="Last Name"
+          />
+        </fieldset>
 
-        {/* --- Radio Group --- */}
+        <fieldset>
+          <legend>DOB & Address</legend>
+          <input
+            type="date"
+            name="dob"
+            value={formData.dob}
+            onChange={handleFormData}
+          />
+          <textarea
+            name="address"
+            value={formData.address}
+            onChange={handleFormData}
+            placeholder="Address"
+          />
+        </fieldset>
+
         <fieldset>
           <legend>Class</legend>
-          <label>
-            <input type="radio" name="class" value="10th" checked={formData.class === "10th"} onChange={handleChange} /> 10th
-          </label>
-          <label>
-            <input type="radio" name="class" value="11th" checked={formData.class === "11th"} onChange={handleChange} /> 11th
-          </label>
-          <label>
-            <input type="radio" name="class" value="12th" checked={formData.class === "12th"} onChange={handleChange} /> 12th
-          </label>
+          {["10th", "11th", "12th"].map((cls) => (
+            <label key={cls}>
+              <input
+                type="radio"
+                name="class"
+                value={cls}
+                checked={formData.class === cls}
+                onChange={handleFormData}
+              /> {cls}
+            </label>
+          ))}
         </fieldset>
-        <br />
 
-        {/* --- Dropdown --- */}
-        <fieldset>
-          <legend>House</legend>
-          {/* FIXED: name="house" missing tha, iske bina handleChange kaam nahi karta */}
-          <select name="house" value={formData.house} onChange={handleChange}>
-            <option value="" disabled>Select an option</option>
-            <option value="Enterprise">Enterprise</option>
-            <option value="Endeavour">Endeavour</option>
-          </select>
-        </fieldset>
-        <br />
-
-        {/* --- Checkboxes --- */}
         <fieldset>
           <legend>Hobbies</legend>
-          <label>
-            <input type="checkbox" name="hobbies" value="Coding" checked={formData.hobbies.includes("Coding")} onChange={handleChange} /> Coding
-          </label>
-          <label>
-            <input type="checkbox" name="hobbies" value="Singing" checked={formData.hobbies.includes("Singing")} onChange={handleChange} /> Singing
-          </label>
+          {["singing", "dancing", "cricket"].map((hobby) => (
+            <label key={hobby}>
+              <input
+                type="checkbox"
+                name="hobbies"
+                value={hobby}
+                checked={formData.hobbies.includes(hobby)}
+                onChange={handleFormData}
+              /> {hobby}
+            </label>
+          ))}
         </fieldset>
-        <br />
 
-        {/* --- Range Slider --- */}
-        <div>
-          <label>Parent Income: ₹{formData.parentIncome}</label>
-          <input
-            type="range"
-            name="parentIncome"
-            min="100000"
-            max="2000000"
-            step="50000"
-            value={formData.parentIncome}
-            onChange={handleChange}
-          />
-        </div>
-        <br />
+        <fieldset>
+          <legend>House</legend>
+          <select name="house" value={formData.house} onChange={handleFormData}>
+            <option value="" disabled>Select an option</option>
+            <option value="enterprise">Enterprise</option>
+            <option value="modesty">Modesty</option>
+            <option value="courage">Courage</option>
+          </select>
+        </fieldset>
 
-        <div>
-          <button type="submit">Submit Form</button>
-          {/* FIXED: onClick={handleReset} kafi hai */}
-          <button type="button" onClick={handleReset} style={{ marginLeft: "10px" }}>Reset</button>
+        <div style={{ marginTop: "10px" }}>
+          <button type="submit">Submit</button>
+          <button type="button" onClick={resetForm}>Reset</button>
         </div>
       </form>
     </div>
