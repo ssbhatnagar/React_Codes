@@ -1,37 +1,31 @@
-import React, { useState, useEffect } from 'react'
+import React, {useState, useEffect} from 'react';
 
-function useProducts() {
+function useProducts(){
 
     const [products, setProducts] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-
-        const fetchAPI = async () => {
+        const fetchAPI = async() =>{
             try{
                 const rawData = await fetch('https://fakestoreapi.com/products')
                 if(!rawData.ok){
-                    throw new Error("Error in fetching the data from API")
+                    throw new Error("Error in fetching the data");
                 }
-                const data = await rawData.json()
-                setProducts(data)
+                const data = await rawData.json();
+                setProducts(data);
             }catch(error){
-                
-                console.log("Error in fetching data: ", error)
-                setError("Error in fetching data")
+                setError("There is an error in fetching api")
+                console.log("Error in fetching")
             }finally{
-                setLoading(false)
+                setLoading(false);
             }
         }
         fetchAPI();
-
     }, [])
 
-    return {products, loading, error}
-
+    return {products, error, loading}
 
 }
-
-export default useProducts;
-
+export default useProducts
