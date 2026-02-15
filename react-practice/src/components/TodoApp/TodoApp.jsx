@@ -1,78 +1,115 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 export default function TodoApp() {
-
     const [userInput, setUserInput] = useState("");
-    const [todo, setTodo] = useState([]);
+    
+    // 1. Initial State from LocalStorage
+    const [todos, setTodos] = useState(() => {
+        const saved = localStorage.getItem("pro_todos");
+        return saved ? JSON.parse(saved) : [];
+    });
+
     const [editingId, setEditingId] = useState(null);
     const [editingInput, setEditingInput] = useState("");
 
-    function handleSubmitTodo() {
+    // 2. Auto-save to LocalStorage whenever 'todos' change
+    useEffect(() => {
+        localStorage.setItem("pro_todos", JSON.stringify(todos));
+    }, [todos]);
+
+    function handleSubmit() {
         if (userInput.trim() !== "") {
             const newTodo = {
                 id: Date.now(),
-                todo: userInput
+                text: userInput,
+                done: false // Mark as done ke liye default false
             }
-            setTodo((prevTodo) => [...prevTodo, newTodo])
-            setUserInput("")
+            setTodos((prev) => [...prev, newTodo]);
+            setUserInput("");
         } else {
-            window.alert("Todo cannot be empty")
+            window.alert("Todo cannot be empty");
         }
+    }
+
+    function handleDelete(id) {
+        setTodos((prev) => prev.filter((t) => t.id !== id));
     }
 
     function editTodo(currentTodo) {
-        setEditingId(currentTodo.id)
-        setEditingInput(currentTodo.todo)
+        setEditingId(currentTodo.id);
+        setEditingInput(currentTodo.text);
     }
 
-    function deleteTodo(id) {
-        setTodo(todo.filter((todo) => todo.id !== id));
-    }
-
-    function updateTodo(currentTodo) {
-        if (editingInput.trim() !== "") {
-            setTodo((prevTodo) =>
-                prevTodo.map((todo) =>
-                    todo.id === currentTodo.id ? { id: todo.id, todo: editingInput } : todo
-                )
+    function updateTodo(id) {
+        setTodos((prev) =>
+            prev.map((t) =>
+                // FIX: 't' ko spread karna hai, 'prev' ko nahi
+                t.id === id ? { ...t, text: editingInput } : t
             )
-            setEditingId(null)
-            setEditingInput("")
-        } else {
-            window.alert("Todo cannot be empty")
-        }
+        );
+        setEditingId(null);
+        setEditingInput("");
+    }
+
+    // 3. Mark as Done Logic
+    function toggleDone(id) {
+        setTodos((prev) =>
+            prev.map((t) =>
+                t.id === id ? { ...t, done: !t.done } : t
+            )
+        );
     }
 
     return (
-        <div>
-            <h1>TodoApp</h1>
+        <div style={{ padding: '20px' }}>
+            <h2>Pro Todo App</h2>
             <div>
                 <input
                     type="text"
-                    placeholder="Enter Todo here"
-                    onChange={(e) => setUserInput(e.target.value)}
                     value={userInput}
-                ></input>
-                <button onClick={handleSubmitTodo}>Submit</button>
+                    onChange={(e) => setUserInput(e.target.value)}
+                    placeholder='Enter your todo'
+                />
+                <button onClick={handleSubmit}>Submit</button>
             </div>
-            <div>
-                <ul>
-                    {todo.map((todo) =>
-                        <li key={todo.id}>
-                            {todo.id === editingId ? (
-                                <input
-                                    type="text"
-                                    placeholder='Edit todo'
-                                    value={editingInput}
-                                    onChange={(e) => setEditingInput(e.target.value)}
-                                ></input>
-                            ) : (<span>{todo.todo}</span>)}
-                            <button onClick={() => deleteTodo(todo.id)} >Delete</button>
-                            {todo.id === editingId ? (<button onClick={() => updateTodo(todo)} >Update</button>) : (<button onClick={() => editTodo(todo)} >Edit</button>)}
-                        </li>
-                    )}
-                </ul>
-            </div>
+
+            <ul>
+                {todos.map((todo) => (
+                    <li key={todo.id} style={{ marginBottom: '10px' }}>
+                        {editingId === todo.id ? (
+                            <input
+                                type="text"
+                                value={editingInput}
+                                onChange={(e) => setEditingInput(e.target.value)}
+                            />
+                        ) : (
+                            <span style={{ 
+                                textDecoration: todo.done ? 'line-through' : 'none',
+                                opacity: todo.done ? 0.6 : 1 
+                            }}>
+                                {todo.text}
+                            </span>
+                        )}
+
+                        <div style={{ display: 'inline', marginLeft: '10px' }}>
+                            {/* Checkbox for Mark as Done */}
+                            <input 
+                                type="checkbox" 
+                                checked={todo.done} 
+                                onChange={() => toggleDone(todo.id)} 
+                            />
+
+                            <button onClick={() => handleDelete(todo.id)}>Delete</button>
+
+                            {editingId === todo.id ? (
+                                <button onClick={() => updateTodo(todo.id)}>Save</button>
+                            ) : (
+                                <button onClick={() => editTodo(todo)}>Edit</button>
+                            )}
+                        </div>
+                    </li>
+                ))}
+            </ul>
         </div>
     )
 }
