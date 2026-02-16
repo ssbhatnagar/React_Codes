@@ -11,7 +11,8 @@ export default function Home() {
     { name: 'API Calling', path: '/api-calling' },
     {name: 'twitterClone', path: '/twitter'},
     {name: 'FilterAPIData', path: '/filter'},
-    {name: 'CartProject', path: '/cart'}
+    {name: 'CartProject', path: '/cart'},
+    {name: 'timer', path: '/timer'}
   ]
 
   return (

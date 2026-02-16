@@ -13,6 +13,7 @@ import ApiCalling from './components/ApiCalling/ApiCalling'
 import Twitter from './components/TwitterClone/Twitter'
 import FilterAPIData from './components/FilterAPIData/FilterAPIData'
 import CartProject from './components/CartProj/CartProject'
+import SimpleTimer from './components/SimpleTimer/SimpleTimer'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
       <Route path="/twitter" element ={<Twitter/>} />
       <Route path="/filter" element = {<FilterAPIData/>} />
       <Route path= "/cart" element = {<CartProject/>} />
+      <Route path='timer' element={<SimpleTimer/>} />
     </Routes>
   )
 }
