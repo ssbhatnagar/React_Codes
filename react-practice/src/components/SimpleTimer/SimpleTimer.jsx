@@ -1,76 +1,70 @@
 import React, { useState, useRef, useEffect } from "react";
 
 function SimpleTimer() {
-  const [time, setTime] = useState(0); // Timer ki value
-  const [userInput, setUserInput] = useState(""); // Input field ke liye
-  const timerRef = useRef(null); // Interval ID ko store karne ke liye
+    const [time, setTime] = useState(0);
+    const [userInput, setUserInput] = useState("");
+    const timeRef = useRef(null);
 
-  // Timer Start karne ka logic
-  const startTimer = () => {
-    // Agar timer pehle se chal raha hai toh dusra mat chalao
-    if (timerRef.current) return;
+    function startTimer(){
+      if(timeRef.current || time <=0) return;
 
-    timerRef.current = setInterval(() => {
-      setTime((prev) => {
-        if (prev <= 1) {
-          clearInterval(timerRef.current);
-          timerRef.current = null;
-          return 0;
+      timeRef.current = setInterval(() => {
+        setTime((prev) =>{
+          if(prev<=1){
+            clearInterval(timeRef.current);
+            timeRef.current = null;
+            return 0;
+          }
+          return prev -1
         }
-        return prev - 1;
-      });
-    }, 1000);
-  };
-
-  // Timer Pause karne ka logic
-  const pauseTimer = () => {
-    clearInterval(timerRef.current);
-    timerRef.current = null;
-  };
-
-  // Timer Reset karne ka logic
-  const resetTimer = () => {
-    pauseTimer();
-    setTime(0);
-    setUserInput("");
-  };
-
-  // Custom time set karne ka logic
-  const handleSetTime = () => {
-    const seconds = parseInt(userInput);
-    if (!isNaN(seconds) && seconds > 0) {
-      setTime(seconds);
+        )
+      }, 1000)
     }
-  };
 
-  // Cleanup: Agar component band ho jaye toh timer bhi ruk jaye (Memory Leak se bachata hai)
-  useEffect(() => {
-    return () => clearInterval(timerRef.current);
-  }, []);
+    function pauseTimer(){
+      clearInterval(timeRef.current);
+      timeRef.current = null;
+    }
 
-  return (
-    <div style={{ textAlign: "center", padding: "20px", fontFamily: "Arial" }}>
-      <h2>Timer: {time}s</h2>
+    function resetTimer(){
+      pauseTimer();
+      setTime(0);
+      setUserInput("");
+    }
+    function handleSetTime(){
+      pauseTimer()
+      const seconds = parseInt(userInput);
+      if(!isNaN(seconds) && seconds >0){
+        setTime(seconds)
+      }
+    };
 
-      {/* Input section */}
-      <div style={{ marginBottom: "10px" }}>
-        <input
-          type="number"
-          placeholder="Enter seconds"
-          value={userInput}
-          onChange={(e) => setUserInput(e.target.value)}
-        />
-        <button onClick={handleSetTime}>Set Time</button>
-      </div>
+    useEffect(() => {
+      return () => clearInterval(timeRef.current);
+    }, [])
 
-      {/* Control Buttons */}
+    return(
       <div>
-        <button onClick={startTimer} style={{ marginRight: "5px" }}>Start</button>
-        <button onClick={pauseTimer} style={{ marginRight: "5px" }}>Pause</button>
+      <input
+      type="number"
+      placeholder="Enter seconds"
+      value={userInput}
+      onChange={(e) => setUserInput(e.target.value)}
+      />
+      <h1>Time Remaining: {time}s</h1>
+      <div>
+        <button onClick={() => handleSetTime()}>setTime</button>
+      </div>
+       <div>
+        {/* ye best practice nahi hai agar hum koi parameter pass nahi kar rahe at that time its best ki hum diretly startTimer pass kar de jaruri nahi ki arrow banana hai */}
+        {/* <button onClick={() =>startTimer()}>Start</button>  */}
+        <button onClick={startTimer}>Start</button> 
+        <button onClick={pauseTimer}>Pause</button>
         <button onClick={resetTimer}>Reset</button>
       </div>
-    </div>
-  );
+
+      </div>
+    )
 }
 
 export default SimpleTimer;
