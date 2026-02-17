@@ -1,70 +1,81 @@
 import React, { useState, useRef, useEffect } from "react";
 
 function SimpleTimer() {
-    const [time, setTime] = useState(0);
-    const [userInput, setUserInput] = useState("");
-    const timeRef = useRef(null);
+ 
+  
+  // STEP 1 do states banayi ek userInput aur ek time ke liye
+  const [userInput, setUserInput] = useState("")
+  const [time, setTime] = useState(0);
 
-    function startTimer(){
-      if(timeRef.current || time <=0) return;
+  // STEP 2 useRef se time refrence ke liye variable banayenge initialize karenge null se
+  const timeRef = useRef(null)
 
-      timeRef.current = setInterval(() => {
-        setTime((prev) =>{
-          if(prev<=1){
-            clearInterval(timeRef.current);
-            timeRef.current = null;
-            return 0;
-          }
-          return prev -1
+  // STEP 3A start timer ka code
+  function startTimer(){
+    // return kar do agar timeRef mai koi value hai ya time 0 ke baraber hai, iska matlab timer chal raha hai abhi bhi
+    if(timeRef.current || time <=0) return;
+
+    timeRef.current = setInterval(() => {
+      setTime((prev) =>{
+        if(prev < 1){
+          clearInterval(timeRef.current)
+          timeRef.current = null
+          return 0;
         }
-        )
-      }, 1000)
+        return prev -1
+      })
+    }, 1000)
+  }
+
+  // STEP 3B ye pause karne ke liye hai 
+  function pauseTimer(){
+    clearInterval(timeRef.current) // clear karo 
+    timeRef.current = null // null karo
+  }
+
+  // STEP 3C ye reset le liye hai
+  function resetTimer(){ 
+    pauseTimer(); // pehele pause 
+    setTime(0) // state reset 
+    setUserInput("") // state reset
+  }
+
+  // STEP 3D handler jo input ko int mai convert karege
+  function handleSetTime(){
+    pauseTimer() // pehele pause karo
+    const seconds = parseInt(userInput) // input ko int mai badlo seconds 
+    if(!isNaN(seconds) && seconds>0){ // user ne koi bekar ka input jaise + - ya xyx to nahi diya ye check uske liye hai aur definitly 0 se bada time hoga tabhi chalega
+      setTime(seconds)
     }
+  }
 
-    function pauseTimer(){
-      clearInterval(timeRef.current);
-      timeRef.current = null;
-    }
 
-    function resetTimer(){
-      pauseTimer();
-      setTime(0);
-      setUserInput("");
-    }
-    function handleSetTime(){
-      pauseTimer()
-      const seconds = parseInt(userInput);
-      if(!isNaN(seconds) && seconds >0){
-        setTime(seconds)
-      }
-    };
+  // STEP 3E garbage cleaning
+  useEffect(() => {
+    return () => clearInterval(timeRef.current)
+  }, [])
 
-    useEffect(() => {
-      return () => clearInterval(timeRef.current);
-    }, [])
-
-    return(
+  return (
+    <div>
       <div>
-      <input
-      type="number"
-      placeholder="Enter seconds"
-      value={userInput}
-      onChange={(e) => setUserInput(e.target.value)}
-      />
-      <h1>Time Remaining: {time}s</h1>
-      <div>
-        <button onClick={() => handleSetTime()}>setTime</button>
+        <input
+        type="text"
+        value={userInput}
+        onChange={(e) => setUserInput(e.target.value)}
+        placeholder="Enter seconds"
+        name="time"
+        />
+        <button onClick={handleSetTime}>Click me to set Time</button>
+        <div>
+        <button onClick={setTime}>Start timer</button>
+        <button onClick={pauseTimer}>pause</button>
+        <button onClick={resetTimer}>reset</button>
+        </div>
+        <div>Ye raha samaye: {time}</div>
       </div>
-       <div>
-        {/* ye best practice nahi hai agar hum koi parameter pass nahi kar rahe at that time its best ki hum diretly startTimer pass kar de jaruri nahi ki arrow banana hai */}
-        {/* <button onClick={() =>startTimer()}>Start</button>  */}
-        <button onClick={startTimer}>Start</button> 
-        <button onClick={pauseTimer}>Pause</button>
-        <button onClick={resetTimer}>Reset</button>
-      </div>
+    </div>
+  )
 
-      </div>
-    )
 }
 
 export default SimpleTimer;
