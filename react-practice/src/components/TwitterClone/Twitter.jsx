@@ -1,137 +1,123 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Twitter() {
 
+  /**
+   * Dekho bhai twitter ka clone banana easy hai waha tak jaha tak normally input lena hai store karna hai aur array mai aur display karwana hai, CRUD bhi easy hai but the point is jab kaam aat ahai replies add karne ka vo thoda sa tricky hai but karte hai step wise with algo
+   */
+
   const [userInput, setUserInput] = useState("");
-  const [tweet, setTweets] = useState([]);
-  const [editingInput, setEditingInput] = useState("");
-  const [editingId, setEditingId] = useState(null)
-
-
+  const [replyToId, setReplyToId] = useState(null);
   const [replyInput, setReplyInput] = useState("");
-  const [replyingToId, setReplyingToId] = useState(null);
+  
+  const [tweets, setTweets] = useState(() => {
+    const savedTweets = localStorage.getItem("tweetsData");
+    return savedTweets ? JSON.parse(savedTweets) : []
+  })  
 
+  useEffect(() => {
+    localStorage.setItem("tweetsData", JSON.stringify(tweets))
+  }, [tweets])
 
-  function submitTweet() {
-    if (userInput.trim() !== "") {
+  function handleSubmit(){
+    if(userInput.trim() !== ""){
       const newTweet = {
         id: Date.now(),
-        tweet: userInput,
-        replies: []
+        text:userInput,
+        replies:[]
       }
-      setTweets((prevTweet) => [...prevTweet, newTweet])
+      setTweets((prev) => [...prev, newTweet])
       setUserInput("")
-    } else {
-      window.alert("Tweet Cannot be empty")
-    }
-
-  }
-
-  function deleteTweet(id) {
-    setTweets((prevTweet) => prevTweet.filter((t) => t.id !== id))
-  }
-
-  function editTweet(currentTweet) {
-    setEditingId(currentTweet.id);
-    setEditingInput(currentTweet.tweet)
-  }
-
-  function updateTweet(currentTweet) {
-    if (editingInput.trim() !== "") {
-      setTweets((prevTweet) =>
-        prevTweet.map((t) =>
-          t.id === currentTweet.id ? { ...t, tweet: editingInput } : t
-        )
-      );
-      setEditingInput(""); // Reset editing input
-      setEditingId(null); // Reset editing ID
-    } else {
+    }else{
       window.alert("Tweet cannot be empty")
     }
   }
 
-  function addReply(tweetId) {
-  if (replyInput.trim() === "") {
+  function addTweet(tweetId){
+    if (replyInput.trim() === "") {
     window.alert("Reply cannot be empty");
     return;
   }
+    const newReply = {
+      id: Date.now(),
+      text: replyInput,
+      replies: []
+    }
 
-  const newReply = {
-    id: Date.now(),
-    tweet: replyInput,
-    replies: []
-  };
-
-  setTweets((prevTweet) =>
-    prevTweet.map((t) =>
-      t.id === tweetId
-        ? { ...t, replies: [...t.replies, newReply] }
-        : t
+    setTweets((prevTweet) =>
+      prevTweet.map((tweet) =>
+        tweet.id === tweetId 
+    ? {...tweet, replies: [...tweet.replies, newReply]} :  tweet 
+      )
     )
-  );
+    setReplyInput("");
+  setReplyToId(null);
 
-  setReplyInput("");
-  setReplyingToId(null); // 🔥 IMPORTANT FIX
+
+  }
+
+  function handleCancel() {
+    setReplyToId(null);
+    setReplyInput("");
+
 }
 
-
-  return (
+  return(
     <div>
       <div>
+        <label>
+          Enter your Tweet:
         <input
-          type="text"
-          placeholder="Enter ur tweet"
-          onChange={(e) => setUserInput(e.target.value)}
-          value={userInput}
-        ></input>
-        <button onClick={() => submitTweet()} >Submit</button>
-        <div>
-          <ul>
-            {tweet.map((t) =>
-              <li key={t.id}>
-                {t.id === editingId ? <span>
-                  <input
-                    type="text"
-                    value={editingInput}
-                    onChange={(e) => setEditingInput(e.target.value)}
-                  />
-                </span> : <span>{t.tweet}</span>}
-
-                <button onClick={() => deleteTweet(t.id)}>Delete</button>
-                {t.id === editingId ? (
-                  <button onClick={() => updateTweet(t)}>Update</button>) : (<button onClick={() => editTweet(t)}>Edit</button>)}
-                <button onClick={() => setReplyingToId(t.id)}>Reply</button>
-                {replyingToId === t.id && (
-                  <div style={{ marginLeft: "20px" }}>
-                    <input
-                      type="text"
-                      placeholder="Write reply..."
-                      value={replyInput}
-                      onChange={(e) => setReplyInput(e.target.value)}
-                    />
-                    <button onClick={() => addReply(t.id)}>Add Reply</button>
-                  </div>
-                )}
-
-                {/* Replies */}
-                {t.replies.length > 0 && (
+        type="text"
+        name="userTweetInput"
+        placeholder="Enter your tweets ..."
+        value={userInput}
+        onChange={(e) => setUserInput(e.target.value)}
+        />
+        </label>
+        <button onClick={handleSubmit} >submit</button>        
+      </div>
+      <div>
+        <ul>
+          {tweets.map((tweet) =>
+          <li key={tweet.id}>
+            {tweet.text}
+            {replyToId === tweet.id ? ( 
+              <div>
+              <button onClick={() => addTweet(tweet.id)}>add</button>
+              <button onClick={handleCancel}>Cancel</button>
+              </div>
+            )
+            : <button onClick={() => setReplyToId(tweet.id)} >reply</button> }
+            {replyToId === tweet.id && (
+              <div>
+                <input
+                type="text"
+                name="replyInput"
+                value={replyInput}
+                onChange={(e) => setReplyInput(e.target.value)}
+                placeholder="Enter your Reply"
+                />
+              </div>
+            )}
+            {/* Replies */}
+                {tweet.replies.length > 0 && (
                   <ul style={{ marginLeft: "20px" }}>
-                    {t.replies.map((r) => (
+                    {tweet.replies.map((r) => (
                       <li key={r.id}>
-                        <span>{r.tweet}</span>
+                        <span>{r.text}</span>
                       </li>
                     ))}
                   </ul>
                 )}
-
-              </li>
-            )}
-          </ul>
-        </div>
+          </li>
+          )}
+        </ul>
       </div>
     </div>
   )
-
+ 
+ 
 }
 
 export default Twitter;

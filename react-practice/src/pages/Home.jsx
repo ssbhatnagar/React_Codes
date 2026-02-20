@@ -9,10 +9,11 @@ export default function Home() {
     { name: 'Password Generator', path: '/password-generator' },
     { name: 'Weather App', path: '/weather' },
     { name: 'API Calling', path: '/api-calling' },
-    {name: 'twitterClone', path: '/twitter'},
+    {name: 'TwitterClone', path: '/twitter'},
     {name: 'FilterAPIData', path: '/filter'},
     {name: 'CartProject', path: '/cart'},
-    {name: 'timer', path: '/timer'}
+    {name: 'Timer', path: '/timer'},
+    {name: 'Form', path: '/form'}
   ]
 
   return (
