@@ -15,6 +15,7 @@ import FilterAPIData from './components/FilterAPIData/FilterAPIData'
 import CartProject from './components/CartProj/CartProject'
 import SimpleTimer from './components/SimpleTimer/SimpleTimer'
 import Form from './components/Form/From'
+import BgColorChanger from './components/BgColorChanger/BgColorChanger'
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
       <Route path= "/cart" element = {<CartProject/>} />
       <Route path='/timer' element={<SimpleTimer/>} />
       <Route path='/form' element={<Form/>}/>
+      <Route path='/color' element={<BgColorChanger/>} />
     </Routes>
   )
 }

@@ -13,7 +13,8 @@ export default function Home() {
     {name: 'FilterAPIData', path: '/filter'},
     {name: 'CartProject', path: '/cart'},
     {name: 'Timer', path: '/timer'},
-    {name: 'Form', path: '/form'}
+    {name: 'Form', path: '/form'},
+    {name: 'BgColorChanger', path: '/color'}
   ]
 
   return (
