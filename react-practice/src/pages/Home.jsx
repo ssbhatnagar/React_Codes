@@ -14,7 +14,9 @@ export default function Home() {
     {name: 'CartProject', path: '/cart'},
     {name: 'Timer', path: '/timer'},
     {name: 'Form', path: '/form'},
-    {name: 'BgColorChanger', path: '/color'}
+    {name: 'BgColorChanger', path: '/color'},
+    {name: 'Star Rating', path:'/star'},
+    {name: 'Progress Bar', path:'/progress'}
   ]
 
   return (

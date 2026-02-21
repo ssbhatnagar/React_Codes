@@ -16,6 +16,8 @@ import CartProject from './components/CartProj/CartProject'
 import SimpleTimer from './components/SimpleTimer/SimpleTimer'
 import Form from './components/Form/From'
 import BgColorChanger from './components/BgColorChanger/BgColorChanger'
+import ProgressBar from './components/ProgressBar/ProgressBar'
+import StarRating from './components/StarRating/StarRating'
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
       <Route path='/timer' element={<SimpleTimer/>} />
       <Route path='/form' element={<Form/>}/>
       <Route path='/color' element={<BgColorChanger/>} />
+      <Route path='/progress' element={<ProgressBar/>} />
+      <Route path='/star' element={<StarRating/>} />
     </Routes>
   )
 }
