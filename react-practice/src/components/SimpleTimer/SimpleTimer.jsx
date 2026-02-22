@@ -1,81 +1,93 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, {useRef, useEffect, useState} from "react"
 
-function SimpleTimer() {
- 
-  
-  // STEP 1 do states banayi ek userInput aur ek time ke liye
-  const [userInput, setUserInput] = useState("")
-  const [time, setTime] = useState(0);
+function SimpleTimer(){
 
-  // STEP 2 useRef se time refrence ke liye variable banayenge initialize karenge null se
-  const timeRef = useRef(null)
+  // pehele 2 states banao
+  const [userInput, setUserInput] = useState("");
+  const[time, setTime] = useState(0); 
 
-  // STEP 3A start timer ka code
+  // ab time reference rakho => useRef ka use karo
+  const timeRef = useRef(null);
+
+  // startTimer
   function startTimer(){
-    // return kar do agar timeRef mai koi value hai ya time 0 ke baraber hai, iska matlab timer chal raha hai abhi bhi
+    // check ki kya timer already chal to nahi raha ya band to nahi
     if(timeRef.current || time <=0) return;
-
     timeRef.current = setInterval(() => {
       setTime((prev) =>{
-        if(prev < 1){
-          clearInterval(timeRef.current)
-          timeRef.current = null
+        if(prev <= 1){
+          clearInterval(timeRef.current);
+          timeRef.current = null;
           return 0;
         }
-        return prev -1
+        return prev -1;
       })
     }, 1000)
-  }
+  } 
 
-  // STEP 3B ye pause karne ke liye hai 
   function pauseTimer(){
-    clearInterval(timeRef.current) // clear karo 
-    timeRef.current = null // null karo
-  }
-
-  // STEP 3C ye reset le liye hai
-  function resetTimer(){ 
-    pauseTimer(); // pehele pause 
-    setTime(0) // state reset 
-    setUserInput("") // state reset
-  }
-
-  // STEP 3D handler jo input ko int mai convert karege
-  function handleSetTime(){
-    pauseTimer() // pehele pause karo
-    const seconds = parseInt(userInput) // input ko int mai badlo seconds 
-    if(!isNaN(seconds) && seconds>0){ // user ne koi bekar ka input jaise + - ya xyx to nahi diya ye check uske liye hai aur definitly 0 se bada time hoga tabhi chalega
-      setTime(seconds)
+    if(timeRef.current){
+    clearInterval(timeRef.current)
+    timeRef.current = null;
     }
   }
 
+  function resetTimer(){
+    pauseTimer();
+    setTime(0);
+    setUserInput("");
+  }
 
-  // STEP 3E garbage cleaning
+  function handleSetTime(){
+    const seconds = parseInt(userInput);
+    if(!isNaN(seconds) && seconds > 0){
+      setTime(seconds);
+      pauseTimer();
+    }
+  }
+
+  // Ye function tumhare component ke andar rahega
+const formatTime = () => {
+  const minutes = Math.floor(time / 60);
+  const seconds = time % 60;
+
+  // String(seconds).padStart(2, '0') isliye taaki "9" ki jagah "09" dikhe
+  return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+};
+
+  // useEffect(() => {
+  //   return () => clearInterval(timeRef.current);
+  // }, [])
+
   useEffect(() => {
-    return () => clearInterval(timeRef.current)
-  }, [])
+    return () => {
+      if (timeRef.current) clearInterval(timeRef.current);
+    };
+  }, []);
 
-  return (
+  return(
     <div>
-      <div>
+      <label>
+        Set your Timer
         <input
         type="text"
         value={userInput}
         onChange={(e) => setUserInput(e.target.value)}
-        placeholder="Enter seconds"
-        name="time"
+        placeholder="Enter time"
+        name="timeInput"
         />
-        <button onClick={handleSetTime}>Click me to set Time</button>
-        <div>
-        <button onClick={setTime}>Start timer</button>
-        <button onClick={pauseTimer}>pause</button>
-        <button onClick={resetTimer}>reset</button>
-        </div>
-        <div>Ye raha samaye: {time}</div>
+      </label>
+      <div>
+      <button onClick={handleSetTime} >SetTime</button>
+      <button onClick={startTimer} >Star timer</button>
+      <button onClick={pauseTimer}>Pause Timer</button>
+      <button onClick={resetTimer}>reset Timer</button>
+      </div>
+      <div>
+      <strong>{formatTime()}</strong>
       </div>
     </div>
   )
 
 }
-
 export default SimpleTimer;
