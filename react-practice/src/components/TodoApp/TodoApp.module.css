@@ -1,0 +1,17 @@
+.parentContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /*VH = Viewport Height, matlab poori screen ki height*/
+    background-color: #f0f0f0;
+}
+
+.appWrapper{
+    background-color: blue;
+    border: 2px solid red;
+    height: 120px;
+    width: 50px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}

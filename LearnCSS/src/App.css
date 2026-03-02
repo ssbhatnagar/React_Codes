@@ -1,0 +1,23 @@
+.mainDiv {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Do barabar columns */
+  grid-template-rows: 1fr 1fr;    /* Do barabar rows */
+  height: 100vh;                  /* Poori screen ki height */
+  border: 5px solid red;
+  box-sizing: border-box;         /* Border height mein count na ho */
+}
+
+/* Common styling for all boxes */
+.div1, .div2, .div3, .div4 {
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+
+/* Individual positioning (Automatic in Grid, but you can be specific) */
+.div1 { justify-self: left; align-self: start; } /* Top Left */
+.div2 { justify-self: right;   align-self: start; } /* Top Right */
+.div3 { justify-self: left; align-self: end;   } /* Bottom Left */
+.div4 { justify-self: right;   align-self: end;   } /* Bottom Right */
