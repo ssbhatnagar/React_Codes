@@ -16,7 +16,8 @@ export default function Home() {
     {name: 'Form', path: '/form'},
     {name: 'BgColorChanger', path: '/color'},
     {name: 'Star Rating', path:'/star'},
-    {name: 'Progress Bar', path:'/progress'}
+    {name: 'Progress Bar', path:'/progress'},
+    {name: 'Tic Tac Toe', path: '/tictactoe'}
   ]
 
   return (

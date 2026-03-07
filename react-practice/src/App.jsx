@@ -18,6 +18,7 @@ import Form from './components/Form/Form'
 import BgColorChanger from './components/BgColorChanger/BgColorChanger'
 import ProgressBar from './components/ProgressBar/ProgressBar'
 import StarRating from './components/StarRating/StarRating'
+import TicTacToe from './components/TicTacToe/TicTacToe'
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
       <Route path='/color' element={<BgColorChanger/>} />
       <Route path='/progress' element={<ProgressBar/>} />
       <Route path='/star' element={<StarRating/>} />
+      <Route path='/tictactoe' element={<TicTacToe/>}/>
     </Routes>
   )
 }
