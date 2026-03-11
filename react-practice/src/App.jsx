@@ -20,6 +20,7 @@ import ProgressBar from './components/ProgressBar/ProgressBar'
 import StarRating from './components/StarRating/StarRating'
 import TicTacToe from './components/TicTacToe/TicTacToe'
 import InputTypes from './components/InputTypes/InputTypes'
+import FilterBasics from './components/FilterBasics/FilterBasics'
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
       <Route path='/star' element={<StarRating/>} />
       <Route path='/tictactoe' element={<TicTacToe/>}/>
       <Route path='/input' element ={<InputTypes/>}/>
+      <Route path='/filterbasic' element={<FilterBasics/>} />
     </Routes>
   )
 }

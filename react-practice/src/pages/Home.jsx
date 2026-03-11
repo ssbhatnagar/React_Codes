@@ -18,7 +18,8 @@ export default function Home() {
     {name: 'Star Rating', path:'/star'},
     {name: 'Progress Bar', path:'/progress'},
     {name: 'Tic Tac Toe', path: '/tictactoe'},
-    {name: 'Input Types', path: '/input'}
+    {name: 'Input Types', path: '/input'},
+    {name: 'Filter Basic', path: '/filterbasic'}
   ]
 
   return (
