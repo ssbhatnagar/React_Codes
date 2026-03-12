@@ -41,14 +41,13 @@ function FilterBasics() {
     const categories = [... new Set(products.map((p) => p.category))]
     console.log(categories);
 
-    function handleCategoryToggle(e){
-        const {value, checked} = e.target;
+    function handleCategoryToggle(category){
         setSelectedCategoreis((prev) => 
-            checked ? [...prev, value] : prev.filter((cat) => cat !== value)
+            prev.includes(category) ? prev.filter((cat) => cat !== category) : [...prev, category] 
         );
     }
 
-    const filteredProducts = selectedCategories === 0 ? products : products.filter((p) => selectedCategories.includes(p.category));
+    const filteredProducts = selectedCategories.length === 0 ? products : products.filter((p) => selectedCategories.includes(p.category));
     
     
     return (
@@ -68,7 +67,7 @@ function FilterBasics() {
             <input
             type="checkbox"
             value={cat}
-            onChange={handleCategoryToggle}
+            onChange={() => handleCategoryToggle(cat)}
             checked={selectedCategories.includes(cat)}
             />
             </label>
