@@ -12,6 +12,7 @@ import WeatherApp from './components/WeatherApp/WeatherApp'
 import ApiCalling from './components/ApiCalling/ApiCalling'
 import Twitter from './components/TwitterClone/Twitter'
 import FilterAPIData from './components/FilterAPIData/FilterAPIData'
+import CartProject from './components/CartProj/CartProject'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <Route path="/api-calling" element={<ApiCalling />} />
       <Route path="/twitter" element ={<Twitter/>} />
       <Route path="/filter" element = {<FilterAPIData/>} />
+      <Route path= "/cart" element = {<CartProject/>} />
     </Routes>
   )
 }

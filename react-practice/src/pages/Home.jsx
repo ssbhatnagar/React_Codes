@@ -10,7 +10,8 @@ export default function Home() {
     { name: 'Weather App', path: '/weather' },
     { name: 'API Calling', path: '/api-calling' },
     {name: 'twitterClone', path: '/twitter'},
-    {name: 'FilterAPIData', path: '/filter'}
+    {name: 'FilterAPIData', path: '/filter'},
+    {name: 'CartProject', path: '/cart'}
   ]
 
   return (

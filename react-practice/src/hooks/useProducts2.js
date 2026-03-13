@@ -1,34 +1,32 @@
 import {useEffect, useState} from "react"
+import { useResolvedPath } from "react-router-dom";
 
 function useProducts2(){
 
     const [products, setProducts] = useState([]);
-    const [error, setError] = useState(null);
+    const [error, setrError] = useState(null);
     const [loading, setLoading] = useState(true);
 
-
     useEffect(() => {
-
-        const fetchAPI = async() => {
+        const fetchAPI = async () =>{
             try{
                 const rawData = await fetch('https://fakestoreapi.com/products')
                 if(!rawData.ok){
-                    throw new Error ("Error in fetching API")
+                    throw new Error("There is an error in fetching the API")
                 }
                 const data = await rawData.json();
-                setProducts(data)
+                setProducts(data);
             }catch(error){
-                console.log("Error in fetching data", error)
-                setError("Error in loading")
+                setrError("Error in fetching data from API")
+                console.log("Error in fetching data from API")
             }finally{
                 setLoading(false)
             }
         }
         fetchAPI();
-        
     }, [])
 
     return {products, error, loading}
-
+    
 }
 export default useProducts2;
