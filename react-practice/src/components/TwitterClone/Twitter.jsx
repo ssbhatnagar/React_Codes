@@ -1,11 +1,11 @@
   import { useEffect, useState } from "react";
 
-  const inititalTweets = [
-    {
+  const inititalTweets = [ // Level 1 outermost array
+    { // Level 2 object inside array
       id: 1,
       tweetText: "Hi",
-      reply: [
-        {
+      reply: [ // Level 3 array inside object 
+        { // Level 4 object inside array
           id: 1.1,
           replyText: "hello"
         },
