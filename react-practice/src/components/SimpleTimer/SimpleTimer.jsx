@@ -1,90 +1,93 @@
-import React, { useState, useEffect } from "react";
+import React, {useRef, useEffect, useState} from "react"
 
-function CustomTimer() {
-  // 1. THE DS (State)
-  const [inputMinutes, setInputMinutes] = useState("");
-  const [totalSeconds, setTotalSeconds] = useState(0);
-  const [isRunning, setIsRunning] = useState(false);
+function SimpleTimer(){
 
-  // 2. THE ENGINE (useEffect)
+  // pehele 2 states banao
+  const [userInput, setUserInput] = useState("");
+  const[time, setTime] = useState(0); 
+
+  // ab time reference rakho => useRef ka use karo
+  const timeRef = useRef(null);
+
+  // startTimer
+  function startTimer(){
+    // check ki kya timer already chal to nahi raha ya band to nahi
+    if(timeRef.current || time <=0) return;
+    timeRef.current = setInterval(() => {
+      setTime((prev) =>{
+        if(prev <= 1){
+          clearInterval(timeRef.current);
+          timeRef.current = null;
+          return 0;
+        }
+        return prev -1;
+      })
+    }, 1000)
+  } 
+
+  function pauseTimer(){
+    if(timeRef.current){
+    clearInterval(timeRef.current)
+    timeRef.current = null;
+    }
+  }
+
+  function resetTimer(){
+    pauseTimer();
+    setTime(0);
+    setUserInput("");
+  }
+
+  function handleSetTime(){
+    const seconds = parseInt(userInput);
+    if(!isNaN(seconds) && seconds > 0){
+      setTime(seconds);
+      pauseTimer();
+    }
+  }
+
+  // Ye function tumhare component ke andar rahega
+const formatTime = () => {
+  const minutes = Math.floor(time / 60);
+  const seconds = time % 60;
+
+  // String(seconds).padStart(2, '0') isliye taaki "9" ki jagah "09" dikhe
+  return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+};
+
+  // useEffect(() => {
+  //   return () => clearInterval(timeRef.current);
+  // }, [])
+
   useEffect(() => {
-    let timerId; // Isko ek 'Driver' maan le
+    return () => {
+      if (timeRef.current) clearInterval(timeRef.current);
+    };
+  }, []);
 
-    // Agar gaadi ON hai (isRunning) AUR tanki mein petrol hai (totalSeconds > 0)
-    if (isRunning && totalSeconds > 0) {
-      // Driver ko bolo har 1000ms (1 second) mein value 1 kam kare
-      timerId = setInterval(() => {
-        setTotalSeconds((prev) => prev - 1);
-      }, 1000);
-    } 
-    // Agar tanki khali ho gayi (0), toh gaadi band kar do
-    else if (totalSeconds === 0) {
-      setIsRunning(false);
-    }
-
-    // THE CLEANUP (Bohot Zaroori!): Jab component hate ya state change ho, toh purane driver ko hata do warna bohot saare driver ek sath chalne lagenge (Memory Leak/Fast Timer bug)
-    return () => clearInterval(timerId);
-    
-  }, [isRunning, totalSeconds]); // Dependency: Engine tabhi check hoga jab Switch on/off ho, ya seconds badlein
-
-  // 3. ACTIONS (Buttons)
-  function handleStart() {
-    // Agar timer 0 par hai, toh pehle input wale minutes ko seconds banakar tanki mein daalo
-    if (totalSeconds === 0 && inputMinutes > 0) {
-      setTotalSeconds(inputMinutes * 60);
-    }
-    setIsRunning(true); // Gaadi start!
-  }
-
-  function handleStop() {
-    setIsRunning(false); // Gaadi rok do (Pause)
-  }
-
-  function handleReset() {
-    setIsRunning(false); // Gaadi band
-    setTotalSeconds(0);  // Tanki khali
-    setInputMinutes(""); // Input saaf
-  }
-
-  // 4. THE DASHBOARD (Derived State - No use of SetState here!)
-  // Math.floor fraction ko hata deta hai (e.g., 2.5 ko 2 bana dega)
-  const hours = Math.floor(totalSeconds / 3600);
-  const minutes = Math.floor((totalSeconds % 3600) / 60);
-  const seconds = totalSeconds % 60;
-
-  // Formatting: "5:3" ko "05:03" dikhane ke liye padStart use karte hain
-  const displayTime = `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
-
-  return (
-    <div style={{ padding: "30px", fontFamily: "sans-serif", textAlign: "center" }}>
-      <h1>Custom Timer</h1>
-      
-      {/* DASHBOARD */}
-      <h2 style={{ fontSize: "3rem", margin: "10px" }}>{displayTime}</h2>
-
-      {/* INPUT */}
-      <div style={{ marginBottom: "20px" }}>
+  return(
+    <div>
+      <label>
+        Set your Timer
         <input
-          type="number"
-          placeholder="Enter Minutes"
-          value={inputMinutes}
-          onChange={(e) => setInputMinutes(e.target.value)}
-          disabled={isRunning} // Chalti gaadi mein petrol mat dalo
-          style={{ padding: "10px", fontSize: "16px" }}
+        type="text"
+        value={userInput}
+        onChange={(e) => setUserInput(e.target.value)}
+        placeholder="Enter time"
+        name="timeInput"
         />
-      </div>
-
-      {/* CONTROLS */}
+      </label>
       <div>
-        {!isRunning ? (
-          <button onClick={handleStart} style={{ padding: "10px 20px", marginRight: "10px" }}>Start</button>
-        ) : (
-          <button onClick={handleStop} style={{ padding: "10px 20px", marginRight: "10px" }}>Stop</button>
-        )}
-        <button onClick={handleReset} style={{ padding: "10px 20px" }}>Reset</button>
+      <button onClick={handleSetTime} >SetTime</button>
+      <button onClick={startTimer} >Star timer</button>
+      <button onClick={pauseTimer}>Pause Timer</button>
+      <button onClick={resetTimer}>reset Timer</button>
+      </div>
+      <div>
+      <strong>{formatTime()}</strong>
       </div>
     </div>
-  );
-}
+  )
 
-export default CustomTimer;
+}
+export default SimpleTimer;
