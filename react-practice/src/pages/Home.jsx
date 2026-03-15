@@ -20,7 +20,8 @@ export default function Home() {
     {name: 'Tic Tac Toe', path: '/tictactoe'},
     {name: 'Input Types', path: '/input'},
     {name: 'Filter Basic', path: '/filterbasic'},
-    {name: 'Modal', path: '/Modal'}
+    {name: 'Modal', path: '/Modal'},
+    {name: 'SearchBar', path: '/search'}
   ]
 
   return (

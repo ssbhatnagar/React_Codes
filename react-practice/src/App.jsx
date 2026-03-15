@@ -22,6 +22,7 @@ import TicTacToe from './components/TicTacToe/TicTacToe'
 import InputTypes from './components/InputTypes/InputTypes'
 import FilterBasics from './components/FilterBasics/FilterBasics'
 import Modal from './components/Modal/Modal'
+import SearchBar from './components/SearchBar/SearchBar'
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
       <Route path='/input' element ={<InputTypes/>}/>
       <Route path='/filterbasic' element={<FilterBasics/>} />
       <Route path='/modal' element={<Modal/>} />
+      <Route path='/search' element={<SearchBar/>}/>
     </Routes>
   )
 }
