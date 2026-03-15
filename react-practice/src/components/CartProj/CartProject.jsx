@@ -30,13 +30,14 @@ function CartProject() {
 
   // 1. ADD TO CART (Fix: Added price to calculate total properly)
   function addToCart(prod) {
-    const newItem = {
-      id: prod.id,
-      title: prod.title,
-      price: prod.price, 
-      qty: 1
-    };
-    setCart((prev) => [...prev, newItem]);
+    // const newItem = {
+    //   id: prod.id,
+    //   title: prod.title,
+    //   price: prod.price, 
+    //   qty: 1
+    // };
+    // setCart((prev) => [...prev, newItem]);
+    setCart((prev) => [...prev, {...prod, qty: 1}] ) // prod mil raha hai to as it is daal do sath mai qty daal do
   }
 
   // 2. INCREASE QTY
