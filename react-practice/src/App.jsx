@@ -21,6 +21,7 @@ import StarRating from './components/StarRating/StarRating'
 import TicTacToe from './components/TicTacToe/TicTacToe'
 import InputTypes from './components/InputTypes/InputTypes'
 import FilterBasics from './components/FilterBasics/FilterBasics'
+import Modal from './components/Modal/Modal'
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
       <Route path='/tictactoe' element={<TicTacToe/>}/>
       <Route path='/input' element ={<InputTypes/>}/>
       <Route path='/filterbasic' element={<FilterBasics/>} />
+      <Route path='/modal' element={<Modal/>} />
     </Routes>
   )
 }

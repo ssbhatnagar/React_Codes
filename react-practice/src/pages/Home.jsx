@@ -19,7 +19,8 @@ export default function Home() {
     {name: 'Progress Bar', path:'/progress'},
     {name: 'Tic Tac Toe', path: '/tictactoe'},
     {name: 'Input Types', path: '/input'},
-    {name: 'Filter Basic', path: '/filterbasic'}
+    {name: 'Filter Basic', path: '/filterbasic'},
+    {name: 'Modal', path: '/Modal'}
   ]
 
   return (
