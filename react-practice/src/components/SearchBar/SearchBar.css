@@ -1,0 +1,28 @@
+.parent-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.input-box{
+    width: 200px;
+    height: 25px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.list{
+    list-style: none;
+    background-color: grey;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.list-item-text{
+    color: white;
+}
+
+.list-item{
+    text-align: left;
+}
