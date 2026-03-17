@@ -21,7 +21,8 @@ export default function Home() {
     {name: 'Input Types', path: '/input'},
     {name: 'Filter Basic', path: '/filterbasic'},
     {name: 'Modal', path: '/Modal'},
-    {name: 'SearchBar', path: '/search'}
+    {name: 'SearchBar', path: '/search'},
+    {name: 'Tab Form', path:'/tab'}
   ]
 
   return (

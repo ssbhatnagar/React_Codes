@@ -23,6 +23,7 @@ import InputTypes from './components/InputTypes/InputTypes'
 import FilterBasics from './components/FilterBasics/FilterBasics'
 import Modal from './components/Modal/Modal'
 import SearchBar from './components/SearchBar/SearchBar'
+import TabForm from './components/TabForm/TabForm'
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
       <Route path='/filterbasic' element={<FilterBasics/>} />
       <Route path='/modal' element={<Modal/>} />
       <Route path='/search' element={<SearchBar/>}/>
+      <Route path='/tab' element={<TabForm/>} />
     </Routes>
   )
 }
