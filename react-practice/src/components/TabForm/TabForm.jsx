@@ -33,6 +33,7 @@ function TabForm() {
     useEffect(() => {
         localStorage.setItem("formData", JSON.stringify(formData));
     }, [formData])
+    // localStorage.removeItem('formData');
 
     function handleFormData(e) {
     const { name, value, checked, type } = e.target;
