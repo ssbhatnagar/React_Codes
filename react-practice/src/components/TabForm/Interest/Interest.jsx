@@ -38,6 +38,7 @@ function Interest({ formData, handleFormData }) {
                     {["Cricket", "Swimming", "Cycling"].map((hobb) =>
 
                         <FormInput
+                        key={hobb}
                             label={hobb}
                             type="checkbox"
                             value={hobb}
