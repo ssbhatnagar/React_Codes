@@ -35,22 +35,23 @@ function TabForm() {
     }, [formData])
 
     function handleFormData(e) {
-        const { name, value, checked, type } = e.target;
+    const { name, value, checked, type } = e.target;
 
-        if (type === "checkbox") {
-            setFormData((prev) => {
-                const updatedHobbies = checked ? [...prev.hobbies, value] : prev.hobbies.filter((h) => h !== value)
-                return { ...prev, hobbies: updatedHobbies }
-            }
-            )
-
-        } else {
-            setFormData((prev) => (
-                { ...prev, [name]: value }
-            )
-            )
-        }
+    if (type === "checkbox") {
+        setFormData((prev) => {
+            // Agar checked true hai, toh pehle check karo ki value already hai ya nahi
+            const updatedHobbies = checked 
+                ? (prev.hobbies.includes(value) ? prev.hobbies : [...prev.hobbies, value]) 
+                : prev.hobbies.filter((h) => h !== value);
+            
+            return { ...prev, hobbies: updatedHobbies };
+        });
+    } else {
+        setFormData((prev) => (
+            { ...prev, [name]: value }
+        ));
     }
+}
 
     function formValidation() {
         // 1. Mandatory fields

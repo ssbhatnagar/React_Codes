@@ -25,9 +25,8 @@ function Interest({ formData, handleFormData }) {
                             label={cls}
                             type="radio"
                             name="class"
-                            // placeholder="Enter your name"
-                            required={false} /* Aise likh ya seedha 'required' likh de ek hi baat hai */
-                            value={formData.userName}
+                            value={cls} // Yahan map wala 'cls' aayega
+                            checked={formData.class === cls} // Ye define karega select hua ya nahi
                             onChange={handleFormData}
                         />
                     )}
@@ -38,7 +37,7 @@ function Interest({ formData, handleFormData }) {
                     {["Cricket", "Swimming", "Cycling"].map((hobb) =>
 
                         <FormInput
-                        key={hobb}
+                            key={hobb}
                             label={hobb}
                             type="checkbox"
                             value={hobb}
