@@ -1,0 +1,15 @@
+.ProductsCard{
+    display: flex; 
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid black;
+    gap: 5px;
+    margin: 5px;
+    width: 400px;
+    flex-wrap: nowrap;
+}
+
+.ProductsImg{
+    height: 200px;
+    width: 200px;
+}

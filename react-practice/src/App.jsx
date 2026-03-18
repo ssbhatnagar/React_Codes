@@ -24,6 +24,7 @@ import FilterBasics from './components/FilterBasics/FilterBasics'
 import Modal from './components/Modal/Modal'
 import SearchBar from './components/SearchBar/SearchBar'
 import TabForm from './components/TabForm/TabForm'
+import Pagination from './components/Pagination/Pagination'
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
       <Route path='/modal' element={<Modal/>} />
       <Route path='/search' element={<SearchBar/>}/>
       <Route path='/tab' element={<TabForm/>} />
+      <Route path='/pagination' element={<Pagination/>}/>
     </Routes>
   )
 }

@@ -22,7 +22,8 @@ export default function Home() {
     {name: 'Filter Basic', path: '/filterbasic'},
     {name: 'Modal', path: '/Modal'},
     {name: 'SearchBar', path: '/search'},
-    {name: 'Tab Form', path:'/tab'}
+    {name: 'Tab Form', path:'/tab'},
+    {name: 'Pagination', path: '/pagination'}
   ]
 
   return (

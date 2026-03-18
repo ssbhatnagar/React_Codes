@@ -1,0 +1,22 @@
+.ProductsContainer{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pageNumber{
+    padding: 5px;
+    margin: 2px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.paginationContainer{
+    padding: 20px;
+}
+
+.active {
+    background-color: #007bff; /* Jo color tumhe chahiye */
+    color: white;
+    font-weight: bold;
+    border: 2px solid #0056b3;
+}
