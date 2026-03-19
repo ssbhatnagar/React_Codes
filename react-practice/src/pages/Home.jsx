@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './Home.css'
+import styles from './Home.module.css'
 
 export default function Home() {
   const projects = [
@@ -28,16 +28,16 @@ export default function Home() {
   ]
 
   return (
-    <div className="home-container">
+    <div className={styles['home-container']}> {/* styles use karein */}
       <h1>React Practice Projects</h1>
       <p>Select a project to get started</p>
-      <div className="projects-grid">
+      <div className={styles['projects-grid']}>
         {projects.map((project) => (
-          <Link key={project.path} to={project.path} className="project-card">
+          <Link key={project.path} to={project.path} className={styles['project-card']}>
             <h2>{project.name}</h2>
           </Link>
         ))}
       </div>
     </div>
-  )
+  );
 }
