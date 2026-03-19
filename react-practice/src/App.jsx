@@ -25,6 +25,7 @@ import Modal from './components/Modal/Modal'
 import SearchBar from './components/SearchBar/SearchBar'
 import TabForm from './components/TabForm/TabForm'
 import Pagination from './components/Pagination/Pagination'
+import TabFormConfig from './components/TabFormConfig/tabFormConfig'
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
       <Route path='/search' element={<SearchBar/>}/>
       <Route path='/tab' element={<TabForm/>} />
       <Route path='/pagination' element={<Pagination/>}/>
+      <Route path='/tabformconfig' element={<TabFormConfig/>}/>
     </Routes>
   )
 }

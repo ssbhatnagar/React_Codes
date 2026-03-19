@@ -23,7 +23,8 @@ export default function Home() {
     {name: 'Modal', path: '/Modal'},
     {name: 'SearchBar', path: '/search'},
     {name: 'Tab Form', path:'/tab'},
-    {name: 'Pagination', path: '/pagination'}
+    {name: 'Pagination', path: '/pagination'},
+    {name: 'Tab Form Config', path: '/tabformconfig'}
   ]
 
   return (
