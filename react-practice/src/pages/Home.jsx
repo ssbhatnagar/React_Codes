@@ -24,7 +24,8 @@ export default function Home() {
     {name: 'SearchBar', path: '/search'},
     {name: 'Tab Form', path:'/tab'},
     {name: 'Pagination', path: '/pagination'},
-    {name: 'Tab Form Config', path: '/tabformconfig'}
+    {name: 'Tab Form Config', path: '/tabformconfig'},
+    {name: 'File Folder Structure', path: '/folderstructure'}
   ]
 
   return (

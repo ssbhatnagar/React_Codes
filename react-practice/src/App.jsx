@@ -26,6 +26,7 @@ import SearchBar from './components/SearchBar/SearchBar'
 import TabForm from './components/TabForm/TabForm'
 import Pagination from './components/Pagination/Pagination'
 import TabFormConfig from './components/TabFormConfig/tabFormConfig'
+import FolderStructure from './components/FileFolderStructure/Component/FolderStructure'
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
       <Route path='/tab' element={<TabForm/>} />
       <Route path='/pagination' element={<Pagination/>}/>
       <Route path='/tabformconfig' element={<TabFormConfig/>}/>
+      <Route path='/folderstructure' element={<FolderStructure/>}/>
     </Routes>
   )
 }
