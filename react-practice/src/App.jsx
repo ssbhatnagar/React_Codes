@@ -27,6 +27,7 @@ import TabForm from './components/TabForm/TabForm'
 import Pagination from './components/Pagination/Pagination'
 import TabFormConfig from './components/TabFormConfig/tabFormConfig'
 import FolderStructure from './components/FileFolderStructure/Component/FolderStructure'
+import NestedReplies from './components/NestedReplies/Component/NestedReplies'
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
       <Route path='/pagination' element={<Pagination/>}/>
       <Route path='/tabformconfig' element={<TabFormConfig/>}/>
       <Route path='/folderstructure' element={<FolderStructure/>}/>
+      <Route path='/nestedreplies' element={<NestedReplies/>}/>
     </Routes>
   )
 }

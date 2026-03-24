@@ -1,0 +1,80 @@
+[
+  {
+    "id": "1",
+    "content": "Hello bhai",
+    "replies": [
+      {
+        "id": "1-1",
+        "content": "Haan bol",
+        "replies": [
+          {
+            "id": "1-1-1",
+            "content": "Kya kar raha?",
+            "replies": [
+              {
+                "id": "1-1-1-1",
+                "content": "Coding bhai",
+                "replies": [
+                  {
+                    "id": "1-1-1-1-1",
+                    "content": "Sahi hai",
+                    "replies": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "1-1-2",
+            "content": "Sab badhiya?",
+            "replies": []
+          }
+        ]
+      },
+      {
+        "id": "1-2",
+        "content": "Kaise ho?",
+        "replies": []
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "content": "React testing",
+    "replies": [
+      {
+        "id": "2-1",
+        "content": "Mast chal raha",
+        "replies": [
+          {
+            "id": "2-1-1",
+            "content": "Ekdum jhakkaas",
+            "replies": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "content": "Recursion magic",
+    "replies": [
+      {
+        "id": "3-1",
+        "content": "Dimag kharab",
+        "replies": [
+          {
+            "id": "3-1-1",
+            "content": "Aasan hai",
+            "replies": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "content": "Khali comment",
+    "replies": []
+  }
+]

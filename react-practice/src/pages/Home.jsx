@@ -25,7 +25,8 @@ export default function Home() {
     {name: 'Tab Form', path:'/tab'},
     {name: 'Pagination', path: '/pagination'},
     {name: 'Tab Form Config', path: '/tabformconfig'},
-    {name: 'File Folder Structure', path: '/folderstructure'}
+    {name: 'File Folder Structure', path: '/folderstructure'},
+    {name: 'Nested Replies', path: '/nestedreplies'}
   ]
 
   return (
