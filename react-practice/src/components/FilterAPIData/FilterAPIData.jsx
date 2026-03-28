@@ -35,6 +35,9 @@ const App = () => {
   // STEP 1: state variable for categories
   const [selectedCategories, setSelectedCategories] = useState([]);
 
+  const [userQuery, setUserQuery] = useState("");
+  // const [searchResults, setSearchResults] = useState([]);
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error loading products</div>;
 
@@ -55,12 +58,16 @@ const App = () => {
     selectedCategories.length === 0
       ? products
       : products.filter(p =>
-          selectedCategories.includes(p.category)
-        );
+        selectedCategories.includes(p.category)
+      );
+
+  const searchResults = filteredProducts.filter((product) =>
+    product.title.toLowerCase().includes(userQuery.toLowerCase())
+  );
 
   return (
     <div>
-    {/* STEP - JSX of checkbox */}
+      {/* STEP - JSX of checkbox */}
       <h2>Filters</h2>
       {categories.map(category => (
         <label key={category} style={{ display: "block" }}>
@@ -74,9 +81,25 @@ const App = () => {
       ))}
 
       <hr />
-
-      <ul>
+      <label>
+        search bar
+        <input
+          type="text"
+          placeholder='Type here for search'
+          onChange={(e) => setUserQuery(e.target.value)}
+          value={userQuery}
+        />
+      </label>
+      {/* <ul>
         {filteredProducts.map(product => (
+          <li key={product.id}>
+            {product.id} - {product.title} - <b>{product.category}</b>
+          </li>
+        ))}
+      </ul> */}
+      <ul>
+        {/* Ab hum final searchResults par map chalayenge */}
+        {searchResults.map(product => (
           <li key={product.id}>
             {product.id} - {product.title} - <b>{product.category}</b>
           </li>
