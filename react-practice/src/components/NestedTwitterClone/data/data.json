@@ -1,0 +1,165 @@
+[
+  {
+    "id": "t1",
+    "author": "@tech_guru",
+    "category": "technology",
+    "content": "React 19 ke naye hooks (use, useOptimistic) frontend development ko poori tarah badal denge. What do you guys think?",
+    "likes": 342,
+    "timestamp": "2026-03-29T10:15:00Z",
+    "replies": [
+      {
+        "id": "r1-1",
+        "author": "@frontend_dev",
+        "content": "Bhai sach mein, boilerplate code bohot kam ho jayega ab.",
+        "likes": 45,
+        "replies": [
+          {
+            "id": "r1-1-1",
+            "author": "@legacy_coder",
+            "content": "Par purane projects ko migrate karna dardnaak hoga.",
+            "likes": 12,
+            "replies": [
+              {
+                "id": "r1-1-1-1",
+                "author": "@tech_guru",
+                "content": "Agreed. Migration docs padhne padenge dhang se.",
+                "likes": 8,
+                "replies": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "r1-2",
+        "author": "@vue_fan",
+        "content": "Vue.js ne ye sab pehle hi kar diya tha 😂",
+        "likes": 10,
+        "replies": [
+          {
+            "id": "r1-2-1",
+            "author": "@react_lover",
+            "content": "Bhai yahan framework war mat shuru kar.",
+            "likes": 55,
+            "replies": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "t2",
+    "author": "@market_bull",
+    "category": "finance",
+    "content": "Nifty 50 aaj phir naye all-time high par hai. Is it a bubble or sustained growth? #StockMarket",
+    "likes": 890,
+    "timestamp": "2026-03-29T09:30:00Z",
+    "replies": [
+      {
+        "id": "r2-1",
+        "author": "@bear_trader",
+        "content": "Retail investors FOMO mein buy kar rahe hain. Correction pakka aayega next month.",
+        "likes": 120,
+        "replies": [
+          {
+            "id": "r2-1-1",
+            "author": "@long_term_hold",
+            "content": "Aane do correction, we will buy the dip!",
+            "likes": 67,
+            "replies": [
+              {
+                "id": "r2-1-1-1",
+                "author": "@options_king",
+                "content": "Dip buy karne ke liye capital bhi toh bachni chahiye pehle.",
+                "likes": 200,
+                "replies": [
+                  {
+                    "id": "r2-1-1-1-1",
+                    "author": "@long_term_hold",
+                    "content": "Emergency fund kis din kaam aayega.",
+                    "likes": 15,
+                    "replies": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "t3",
+    "author": "@sports_addict",
+    "category": "sports",
+    "content": "BCCI ko ab test team mein naye spinners ko chance dena chahiye. Ashwin aur Jadeja legends hain, par future transition zaroori hai.",
+    "likes": 1205,
+    "timestamp": "2026-03-29T08:00:00Z",
+    "replies": [
+      {
+        "id": "r3-1",
+        "author": "@cricket_stats",
+        "content": "Domestic circuit mein kaafi achhe left-arm spinners perform kar rahe hain is season.",
+        "likes": 88,
+        "replies": []
+      },
+      {
+        "id": "r3-2",
+        "author": "@fan_boy",
+        "content": "Jab tak WTC final nahi hota, tab tak core team change mat karo.",
+        "likes": 400,
+        "replies": [
+          {
+            "id": "r3-2-1",
+            "author": "@sports_addict",
+            "content": "Par away tours par backup ready hona chahiye na.",
+            "likes": 25,
+            "replies": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "t4",
+    "author": "@global_watcher",
+    "category": "geo-politics",
+    "content": "Naye trade agreements se South Asia ki supply chain dynamics puri tarah shift hone wali hai. Manufacturing hubs will relocate.",
+    "likes": 450,
+    "timestamp": "2026-03-29T07:15:00Z",
+    "replies": [
+      {
+        "id": "r4-1",
+        "author": "@econ_student",
+        "content": "India ke liye ye bohot badi FDI opportunity hai agar policies favourable rahin toh.",
+        "likes": 130,
+        "replies": [
+          {
+            "id": "r4-1-1",
+            "author": "@policy_critic",
+            "content": "Execution hamesha issue rehta hai humara, policies toh paper par achi hoti hain.",
+            "likes": 95,
+            "replies": [
+              {
+                "id": "r4-1-1-1",
+                "author": "@econ_student",
+                "content": "Is baar PLI schemes ka track record dekho, execution improve hua hai.",
+                "likes": 40,
+                "replies": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "t5",
+    "author": "@daily_dev",
+    "category": "technology",
+    "content": "Just spent 3 hours debugging a CSS issue, only to realize I had a typo in the class name. FML.",
+    "likes": 2100,
+    "timestamp": "2026-03-29T06:00:00Z",
+    "replies": []
+  }
+]

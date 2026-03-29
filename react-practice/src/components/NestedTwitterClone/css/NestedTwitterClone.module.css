@@ -1,0 +1,149 @@
+/* Container for the whole app */
+.appContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  /* Optional: Light background so white blocks stand out */
+  background-color: #f7f9f9; 
+  min-height: 100vh;
+}
+
+.heading {
+  text-align: center;
+  color: #1da1f2; /* Twitter Blue */
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+}
+
+/* Add Tweet Input Area */
+.composeBox {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.composeBox input {
+  flex: 1;
+  padding: 12px 15px;
+  border: 1px solid #cfd9de;
+  border-radius: 20px;
+  font-size: 16px;
+  outline: none;
+}
+
+.composeBox input:focus {
+  border-color: #1da1f2;
+}
+
+.composeBox button {
+  padding: 10px 20px;
+  background-color: #1da1f2;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.composeBox button:hover {
+  background-color: #1a8cd8;
+}
+
+/* The Recursive List Structure */
+.listContainer {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Individual Tweet/Reply Card - Default behavior for nested */
+.tweetCard {
+  border-left: 2px solid #cfd9de; /* Creates the nested line effect */
+  padding-left: 15px;
+  margin-top: 15px;
+  position: relative;
+}
+
+/* 🔥 NEW: Styles specifically for Level 0 (Top-level Tweet Block) */
+.threadBlock {
+  background-color: white;
+  border: 1px solid #e1e8ed;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  border-left: none; /* Remove left line for the main wrapper */
+}
+
+/* Styling the content and buttons row */
+.tweetHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
+  background-color: #f7f9f9;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Top level tweets should look a bit bolder */
+.threadBlock > .tweetHeader {
+  background-color: transparent;
+  padding: 5px 0 15px 0;
+  border-bottom: 1px solid #eff3f4;
+  border-radius: 0;
+}
+
+.tweetContent {
+  font-size: 16px;
+  color: #0f1419;
+}
+
+/* Action Buttons (Reply) */
+.replyButton {
+  background: transparent;
+  color: #536471;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 5px 10px;
+}
+
+.replyButton:hover {
+  color: #1da1f2;
+  background-color: #e8f5fe;
+  border-radius: 20px;
+}
+
+/* Input box for replying */
+.replyInputBox {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  margin-left: 15px;
+  margin-top: 10px;
+}
+
+.replyInputBox input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #cfd9de;
+  border-radius: 20px;
+  outline: none;
+}
+
+.replyInputBox button {
+  padding: 6px 15px;
+  background-color: #0f1419;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
