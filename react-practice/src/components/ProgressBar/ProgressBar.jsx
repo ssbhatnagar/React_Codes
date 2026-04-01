@@ -1,30 +1,46 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react'
+import Styles from '../ProgressBar/ProgressBar.module.css'
 
 function ProgressBar() {
   const [progress, setProgress] = useState(0);
 
-  return (
-    <div style={{ padding: "20px" }}>
-      <h3>Progress: {progress}%</h3>
-      
-      {/* Outer Container (Grey Bar) */}
-      <div style={{ width: "100%", backgroundColor: "#e0e0df", borderRadius: "10px" }}>
-        {/* Inner Progress (Blue Bar) */}
-        <div style={{ 
-          height: "20px", 
-          width: `${progress}%`, // Width state se control ho rahi hai
-          backgroundColor: "#4caf50", 
-          borderRadius: "inherit",
-          transition: "width 0.4s ease-in" // Smooth animation ke liye
-        }}></div>
-      </div>
+  useEffect(() => {
+    // Condition: Timer tabhi chalega jab progress 100 se kam ho
+    if (progress < 100) {
+      const timer = setTimeout(() => {
+        // Har baar progress ko 10 se badha rahe hain, max limit 100 rakhi hai
+        setProgress((prev) => Math.min(100, prev + 10));
+      }, 500); // 500ms = 0.5 seconds ka delay
 
-      <div style={{ marginTop: "10px" }}>
-        <button onClick={() => setProgress(prev => Math.min(prev + 10, 100))}>Increase</button>
-        <button onClick={() => setProgress(prev => Math.max(prev - 10, 0))}>Decrease</button>
+      // Cleanup Function: Ye memory leaks ko rokta hai aur multiple timers banne se bachata hai
+      return () => clearTimeout(timer);
+    }
+  }, [progress]); // Dependency array: Har baar jab progress change hoga, ye useEffect wapas run hoga
+
+  return (
+    <div>
+      <h1>Progress Bar</h1>
+      <div className={Styles.outer}>
+        <div 
+          className={Styles.inner} 
+          style={{ 
+            transform: `translateX(${progress - 100}%)`
+          }}
+          role='progressbar'
+          aria-valuenow={progress}
+          aria-valuemax="100"
+          aria-valuemin="0"
+        >
+          {progress}%
+        </div>
+      </div>
+      
+      {/* Test karne ke liye ek Reset button de diya hai */}
+      <div style={{ marginTop: '20px', textAlign: 'center' }}>
+        <button onClick={() => setProgress(0)}>Reset Progress</button>
       </div>
     </div>
-  );
+  )
 }
 
-export default ProgressBar;
+export default ProgressBar
