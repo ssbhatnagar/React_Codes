@@ -27,7 +27,8 @@ export default function Home() {
     {name: 'Tab Form Config', path: '/tabformconfig'},
     {name: 'File Folder Structure', path: '/folderstructure'},
     {name: 'Nested Replies', path: '/nestedreplies'},
-    {name: 'Nested Twitter Clone', path: '/nestedtweets'}
+    {name: 'Nested Twitter Clone', path: '/nestedtweets'},
+    {name: 'Accordian', path: '/accordian'}
   ]
 
   return (

@@ -29,6 +29,7 @@ import TabFormConfig from './components/TabFormConfig/tabFormConfig'
 import FolderStructure from './components/FileFolderStructure/Component/FolderStructure'
 import NestedReplies from './components/NestedReplies/Component/NestedReplies'
 import NestedTwitterClone from './components/NestedTwitterClone/components/NestedTwitterClone'
+import Accordian from './components/Accordian/Accordian'
 
 function App() {
   return (
@@ -58,6 +59,7 @@ function App() {
       <Route path='/folderstructure' element={<FolderStructure/>}/>
       <Route path='/nestedreplies' element={<NestedReplies/>}/>
       <Route path='/nestedtweets' element={<NestedTwitterClone/>}/>
+      <Route path='/accordian' element={<Accordian/>}/>
     </Routes>
   )
 }

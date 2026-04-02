@@ -1,0 +1,59 @@
+/* Main wrapper ko center karne ke liye */
+.appContainer {
+  max-width: 600px; /* Dabbe ki fixed chaurai */
+  margin: 40px auto; /* Auto margin se dabba center aayega */
+  font-family: sans-serif;
+}
+
+/* Heading simple aur clean */
+.heading {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Accordion ke dabbe ka outer border */
+.accordionWrapper {
+  border: 1px solid #ccc;
+  border-radius: 8px; /* Halke gol kinare */
+  overflow: hidden; /* Taaki andar ke items corners se bahar na niklein */
+}
+
+/* Har ek item ka dabbe */
+.itemContainer {
+  border-bottom: 1px solid #ccc; /* Items ko alag karne ki line */
+}
+
+/* Aakhri item ke neeche double border na aaye isliye usko hata diya */
+.itemContainer:last-child {
+  border-bottom: none;
+}
+
+/* Button ki styling (Sabse zaroori hissa) */
+.accordionButton {
+  width: 100%; /* Button poori jagah lega */
+  display: flex;
+  justify-content: space-between; /* Title left mein, Arrow right mein */
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #f9f9f9;
+  border: none; /* Default button ka ganda border hataya */
+  cursor: pointer; /* Hover karne par haath ka nishaan */
+  font-size: 16px;
+  font-weight: bold;
+  text-align: left;
+  transition: background-color 0.2s ease;
+}
+
+.accordionButton:hover {
+  background-color: #f1f1f1; /* Hover pe thoda dark hoga */
+}
+
+/* Khulne wale content ki styling */
+.accordionContent {
+  padding: 15px 20px;
+  background-color: #ffffff; /* Content ka background white rakha hai */
+  color: #555;
+  font-size: 15px;
+  line-height: 1.5;
+}
