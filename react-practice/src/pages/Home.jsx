@@ -28,7 +28,8 @@ export default function Home() {
     {name: 'File Folder Structure', path: '/folderstructure'},
     {name: 'Nested Replies', path: '/nestedreplies'},
     {name: 'Nested Twitter Clone', path: '/nestedtweets'},
-    {name: 'Accordian', path: '/accordian'}
+    {name: 'Accordian', path: '/accordian'},
+    {name: 'OTP Input', path: '/otp'}
   ]
 
   return (

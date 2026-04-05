@@ -30,6 +30,7 @@ import FolderStructure from './components/FileFolderStructure/Component/FolderSt
 import NestedReplies from './components/NestedReplies/Component/NestedReplies'
 import NestedTwitterClone from './components/NestedTwitterClone/components/NestedTwitterClone'
 import Accordian from './components/Accordian/Accordian'
+import OTPInput from './components/OTP/OTPInput'
 
 function App() {
   return (
@@ -60,6 +61,7 @@ function App() {
       <Route path='/nestedreplies' element={<NestedReplies/>}/>
       <Route path='/nestedtweets' element={<NestedTwitterClone/>}/>
       <Route path='/accordian' element={<Accordian/>}/>
+      <Route path='/otp' element={<OTPInput/>}/>
     </Routes>
   )
 }
