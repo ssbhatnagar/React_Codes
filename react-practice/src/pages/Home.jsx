@@ -29,7 +29,8 @@ export default function Home() {
     {name: 'Nested Replies', path: '/nestedreplies'},
     {name: 'Nested Twitter Clone', path: '/nestedtweets'},
     {name: 'Accordian', path: '/accordian'},
-    {name: 'OTP Input', path: '/otp'}
+    {name: 'OTP Input', path: '/otp'},
+    {name: 'Cart With Filter', path:'/cartwithfilter'}
   ]
 
   return (
