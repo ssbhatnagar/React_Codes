@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 
 export default function UserSearchSuggestion() {
@@ -7,6 +7,7 @@ export default function UserSearchSuggestion() {
     const [showSearchDropdown, setShowSearchDropDown] = useState(false);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false); // Default false
+    const searchCache = useRef({});
 
     useEffect(() => {
         const fetchResults = async () => {
@@ -17,7 +18,11 @@ export default function UserSearchSuggestion() {
                     return;
                 }
                 setLoading(true); // Fetch hone se pehle loading ON
-                
+                if(searchCache.current[userQuery]){
+                    setSearchResults(searchCache.current[userQuery])
+                    setLoading(false);
+                    return;
+                }
                 const rawResults = await fetch(
                     `https://dummyjson.com/users/search?q=${userQuery}`
                 );
@@ -27,6 +32,7 @@ export default function UserSearchSuggestion() {
                 }
                 
                 const results = await rawResults.json();
+                searchCache.current[userQuery] = results.users
                 setSearchResults(results.users);
             } catch (error) {
                 console.log("Unable to fetch data");
