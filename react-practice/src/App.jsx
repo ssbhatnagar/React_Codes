@@ -32,6 +32,7 @@ import NestedTwitterClone from './components/NestedTwitterClone/components/Neste
 import Accordian from './components/Accordian/Accordian'
 import OTPInput from './components/OTP/OTPInput'
 import CartWithFilter from './components/CartWithFilter/CartWithFilter'
+import UserSearchSuggestion from './components/UserSearchSuggestion/UserSearchSuggestion'
 
 function App() {
   return (
@@ -64,6 +65,7 @@ function App() {
       <Route path='/accordian' element={<Accordian/>}/>
       <Route path='/otp' element={<OTPInput/>}/>
       <Route path='/cartwithfilter' element={<CartWithFilter/>}/>
+      <Route path='/usersuggestion' element={<UserSearchSuggestion/>}/>
     </Routes>
   )
 }
