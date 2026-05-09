@@ -1,102 +1,102 @@
 import { useState } from "react";
 
-const todoItems = [
+
+const booksData = [
     {
-        id: Date.now(),
-        todoText: "Learn React",
-        isCompleted: false,
+        id: "1",
+        bookTitle: "xyz",
+        authorName: "abc",
+        isComplete: false
     },
     {
-        id: Date.now(),
-        todoText: "Learn Js",
-        isCompleted: false,
+        id: "2",
+        bookTitle: "two states",
+        authorName: "Chetan Bhagat",
+        isComplete: true
     },
     {
-        id: Date.now(),
-        todoText: "Learn theory",
-        isCompleted: true,
-    },
-    {
-        id: Date.now(),
-        todoText: "TS",
-        isCompleted: true,
-    },
-    {
-        id: Date.now(),
-        todoText: "Learn CSS",
-        isCompleted: false,
+        id: "3",
+        bookTitle: "Shiva Triology",
+        authorName: "Amish",
+        isComplete: false
     }
-
-
 ]
 
-function TodoApp() {
 
-    const [todos, setTodos] = useState([]);
-    const [userInput, setUserInput] = useState("");
+function BookTracker() {
 
-    function submitTodo() {
-        if (userInput.trim() !== "") {
-            const newTodo = {
-                id: Date.now(),
-                todoText: userInput,
-                isCompleted: false
-            }
-            setTodos((prev) => (
-                [...prev, newTodo]
-            ))
-            setUserInput("")
-        } else {
-            window.alert("Todo Cannot be empty")
+    const [booksList, setBookList] = useState(booksData);
+    const [bookTitleInput, setBookTitleInput] = useState("");
+    const [bookAuthorInput, setBookAuthorInput] = useState("");
+
+    function addNewBook(){
+        if((bookAuthorInput.trim() && bookTitleInput.trim()) !== "") {
+        const newBook = {
+            id: Date.now().toString(),
+            bookTitle: bookTitleInput,
+            authorName: bookAuthorInput,
+            isComplete: false
         }
+        setBookList((prev) => [...prev, newBook]);
+        setBookAuthorInput("");
+        setBookTitleInput("")
+    }
+    else{
+        window.alert("book Title or Author Cannot be Empty")
+    }
     }
 
-    function toggleIsComplete(index) {
-        setTodos((prev) =>
-            prev.map((todo) =>
-                todo.id === index ? { ...todo, isCompleted: !todo.isCompleted } : todo
-            )
+    function deleteBook(id){
+        setBookList((prev) =>
+            prev.filter((book) => book.id !== id)
         )
     }
 
-    function deleteTodo(index){
-        setTodos((prev) =>
-            prev.filter((todo) => todo.id !== index) 
+    function markAsComplete(id){
+        setBookList((prev) =>
+            prev.map((book) => book.id === id ? {...book, isComplete: !book.isComplete} : book  )
         )
     }
 
-    return (
+    return(
         <div>
-            <h1>Todo List</h1>
+            <h1>The Mini Reading List</h1>
             <div>
                 <input
-                    type="text"
-                    name="TodoInput"
-                    placeholder="Enter your Todo"
-                    onChange={(e) => setUserInput(e.target.value)}
-                    value={userInput}
+                type="text"
+                placeholder="Enter Book Title"
+                value={bookTitleInput}
+                onChange={(e) => setBookTitleInput(e.target.value)}
                 />
-            </div>
-            <div>
-                <button onClick={submitTodo}>Add Todo</button>
-            </div>
-            <ul>
-                {todos.map((todo) =>
-                    <li key={todo.id}>
-                        <span style={{ textDecoration: todo.isCompleted ? "line-through" : "none" }}>
-                            {todo.todoText}
-                        </span>
-                        <button onClick={() => deleteTodo(todo.id)}>Delete</button>
-                        <input
+                <input
+                type="text"
+                placeholder="Enter Author name"
+                value={bookAuthorInput}
+                onChange={(e) => setBookAuthorInput(e.target.value)}
+                />
+                <button onClick={addNewBook}>Add Book</button>
+                <div>
+                    <ul>
+                        {booksList.map((book) => 
+                        <li key={book.id}>
+                            <span style={{textDecoration: book.isComplete ? 'line-through' : 'none' }} >
+                            {book.bookTitle} - {book.authorName}
+                            </span>
+                            {" "}
+                            <button onClick={() => deleteBook(book.id)}>Delete</button>
+                            <input
                             type="checkbox"
-                            checked={todo.isCompleted}
-                            onChange={() => toggleIsComplete(todo.id)}
-                        />
-                    </li>
-                )}
-            </ul>
+                            checked={book.isComplete}
+                            onChange={() => markAsComplete(book.id)}
+                            />
+                        </li>
+                        )}
+                    </ul>
+                </div>
+            </div>
         </div>
     )
+    
 }
 
-export default TodoApp;
+export default BookTracker;
