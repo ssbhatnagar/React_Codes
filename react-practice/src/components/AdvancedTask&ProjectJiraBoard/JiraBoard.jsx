@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const initialTasks = [
     { id: "t1", title: "Setup Redux Toolkit", category: "Frontend", priority: "High", isCompleted: false },
@@ -8,13 +8,57 @@ const initialTasks = [
 
 function JiraBoard() {
 
-    const [task, setTask] = useState(initialTasks);
+    const [task, setTask] = useState(() => {
+        const savedData = localStorage.getItem("jiraTask")
+        return savedData ? JSON.parse(savedData) : initialTasks
+    });
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            localStorage.setItem("jiraTask", JSON.stringify(task))
+        }, 1500)
+
+        return () => {
+            clearTimeout(timer)
+        }
+    }, [task])
 
     const defaultTask = initialTasks[0];
     
-    const[titleInput, setTitleInput] = useState(defaultTask.title);
-    const[inputCategory, setInputCategory] = useState(defaultTask.category);
-    const[inputPriority, setInputPriority] = useState(defaultTask.priority);
+    const[titleInput, setTitleInput] = useState("");
+    const[inputCategory, setInputCategory] = useState("");
+    const[inputPriority, setInputPriority] = useState("");
+
+
+    function handleSubmitData(e){
+        e.preventDefault();
+        if(titleInput.trim() === ""){
+            window.alert("Titile needed")
+            return
+        }
+        const newTask = {
+            id: Date.now().toString(),
+            title: titleInput,
+            category: inputCategory,
+            priority: inputPriority,
+            isCompleted: false
+        }
+        setTask((prev) => [...prev, newTask])
+        setTitleInput("")
+    }
+
+    
+    function handleDelete(idx){
+        setTask((prev) =>
+            prev.filter((t) => t.id !== idx)
+        )
+    }
+
+    function handleIsComplete(idx){
+        setTask((prev) =>
+            prev.map((t) => t.id === idx ? {...t, isCompleted: !t.isCompleted} : t)
+        )
+    }
 
 
     return (
@@ -22,7 +66,7 @@ function JiraBoard() {
             <h1>Jira Board</h1>
             <div>
                 <h3>Add the task</h3>
-                <form>
+                <form onSubmit={(e) => handleSubmitData(e)}>
                     <fieldset>
                         <legend>Task</legend>
                         <label>
@@ -61,11 +105,18 @@ function JiraBoard() {
 
                         </fieldset>
                     </fieldset>
+                    <button type="submit">Submit</button>
                 </form>
                 <ul>
                     {task.map((tsk) =>
                         <li key={tsk.id}>
-                            <span>{tsk.title}</span>
+                            <span style={{textDecoration: tsk.isCompleted ? 'line-through' : 'none' }} >{tsk.title} {tsk.priority} {tsk.category}</span>
+                            <input
+                            type="checkbox"
+                            checked={tsk.isCompleted}
+                            onChange={() => handleIsComplete(tsk.id)}
+                            />
+                            <button onClick={() => handleDelete(tsk.id)}>Delete</button>
                         </li>
                     )}
                 </ul>
