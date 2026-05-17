@@ -31,7 +31,8 @@ export default function Home() {
     {name: 'Accordian', path: '/accordian'},
     {name: 'OTP Input', path: '/otp'},
     {name: 'Cart With Filter', path:'/cartwithfilter'},
-    {name: 'User Search Suggestion', path:'/usersuggestion'}
+    {name: 'User Search Suggestion', path:'/usersuggestion'},
+    {name: "Project Allocation", path:'/project'}
   ]
 
   return (

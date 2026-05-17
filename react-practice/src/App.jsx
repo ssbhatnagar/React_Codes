@@ -33,6 +33,7 @@ import Accordian from './components/Accordian/Accordian'
 import OTPInput from './components/OTP/OTPInput'
 import CartWithFilter from './components/CartWithFilter/CartWithFilter'
 import UserSearchSuggestion from './components/UserSearchSuggestion/UserSearchSuggestion'
+import ProjectAllocation from './components/ProjectAllocationQuestion/ProjectAllocation'
 
 function App() {
   return (
@@ -66,6 +67,7 @@ function App() {
       <Route path='/otp' element={<OTPInput/>}/>
       <Route path='/cartwithfilter' element={<CartWithFilter/>}/>
       <Route path='/usersuggestion' element={<UserSearchSuggestion/>}/>
+      <Route path='/project' element={<ProjectAllocation/>}/>
     </Routes>
   )
 }
