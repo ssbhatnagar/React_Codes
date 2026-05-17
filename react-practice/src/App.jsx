@@ -34,6 +34,8 @@ import OTPInput from './components/OTP/OTPInput'
 import CartWithFilter from './components/CartWithFilter/CartWithFilter'
 import UserSearchSuggestion from './components/UserSearchSuggestion/UserSearchSuggestion'
 import ProjectAllocation from './components/ProjectAllocationQuestion/ProjectAllocation'
+import JiraBoard from './components/AdvancedTask&ProjectJiraBoard/JiraBoard'
+import CheckboxRadioDropdown from './components/CheckboxRadioDropdown/CheckboxRadioDropdown'
 
 function App() {
   return (
@@ -68,6 +70,8 @@ function App() {
       <Route path='/cartwithfilter' element={<CartWithFilter/>}/>
       <Route path='/usersuggestion' element={<UserSearchSuggestion/>}/>
       <Route path='/project' element={<ProjectAllocation/>}/>
+      <Route path='/JiraBoard' element={<JiraBoard/>}/>
+      <Route path='/CheckboxRadioDropdown' element ={<CheckboxRadioDropdown/>} />
     </Routes>
   )
 }

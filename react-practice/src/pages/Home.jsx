@@ -32,7 +32,9 @@ export default function Home() {
     {name: 'OTP Input', path: '/otp'},
     {name: 'Cart With Filter', path:'/cartwithfilter'},
     {name: 'User Search Suggestion', path:'/usersuggestion'},
-    {name: "Project Allocation", path:'/project'}
+    {name: "Project Allocation", path:'/project'},
+    {name: "Jira Board", path:"/JiraBoard"},
+    {name: "Checkbox Radio Dropdown", path: '/CheckboxRadioDropdown'}
   ]
 
   return (
