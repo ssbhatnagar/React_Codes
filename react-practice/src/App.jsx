@@ -36,6 +36,7 @@ import UserSearchSuggestion from './components/UserSearchSuggestion/UserSearchSu
 import ProjectAllocation from './components/ProjectAllocationQuestion/ProjectAllocation'
 import JiraBoard from './components/AdvancedTask&ProjectJiraBoard/JiraBoard'
 import CheckboxRadioDropdown from './components/CheckboxRadioDropdown/CheckboxRadioDropdown'
+import TodoWithComponents from './components/TodoWithComponents/TodoWithComponents'
 
 function App() {
   return (
@@ -72,6 +73,7 @@ function App() {
       <Route path='/project' element={<ProjectAllocation/>}/>
       <Route path='/JiraBoard' element={<JiraBoard/>}/>
       <Route path='/CheckboxRadioDropdown' element ={<CheckboxRadioDropdown/>} />
+      <Route path='/TodoWithComponent' element={<TodoWithComponents/>}/>
     </Routes>
   )
 }

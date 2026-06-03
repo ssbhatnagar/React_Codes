@@ -34,7 +34,8 @@ export default function Home() {
     {name: 'User Search Suggestion', path:'/usersuggestion'},
     {name: "Project Allocation", path:'/project'},
     {name: "Jira Board", path:"/JiraBoard"},
-    {name: "Checkbox Radio Dropdown", path: '/CheckboxRadioDropdown'}
+    {name: "Checkbox Radio Dropdown", path: '/CheckboxRadioDropdown'},
+    {name: "Todo with Components", path: '/TodoWithComponent'}
   ]
 
   return (
